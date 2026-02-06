@@ -1,0 +1,2863 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividades de Estimulação Cognitiva para Idosos em Casa de Repouso</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <style>
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .font-sans { font-family: 'Inter', sans-serif; }
+        
+        /* Mermaid chart styling */
+        .mermaid-container {
+            display: flex;
+            justify-content: center;
+            min-height: 300px;
+            max-height: 800px;
+            background: #ffffff;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mermaid-container .mermaid {
+            width: 100%;
+            max-width: 100%;
+            height: 100%;
+            cursor: grab;
+            transition: transform 0.3s ease;
+            transform-origin: center center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            touch-action: none; /* 防止触摸设备上的默认行为 */
+            -webkit-user-select: none; /* 防止文本选择 */
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .mermaid-container .mermaid svg {
+            max-width: 100%;
+            height: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .mermaid-container .mermaid:active {
+            cursor: grabbing;
+        }
+
+        .mermaid-container.zoomed .mermaid {
+            height: 100%;
+            width: 100%;
+            cursor: grab;
+        }
+
+        .mermaid-controls {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 20;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 8px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .mermaid-control-btn {
+            background: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #374151;
+            font-size: 14px;
+            min-width: 36px;
+            height: 36px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mermaid-control-btn:hover {
+            background: #f8fafc;
+            border-color: #3b82f6;
+            color: #3b82f6;
+            transform: translateY(-1px);
+        }
+
+        .mermaid-control-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Mermaid theme customization for better contrast */
+        .mermaid .node rect,
+        .mermaid .node circle,
+        .mermaid .node ellipse,
+        .mermaid .node polygon {
+            fill: #ffffff !important;
+            stroke: #374151 !important;
+            stroke-width: 2px !important;
+            filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+        }
+        
+        .mermaid .node .label,
+        .mermaid .nodeLabel {
+            color: #1f2937 !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 14px !important;
+            font-weight: 500 !important;
+            fill: #1f2937 !important;
+        }
+        
+        /* Different node colors with high contrast */
+        .mermaid .node:nth-child(1) rect,
+        .mermaid .node:nth-child(1) circle,
+        .mermaid .node:nth-child(1) ellipse,
+        .mermaid .node:nth-child(1) polygon {
+            fill: #dbeafe !important;
+            stroke: #1e40af !important;
+        }
+        
+        .mermaid .node:nth-child(2) rect,
+        .mermaid .node:nth-child(2) circle,
+        .mermaid .node:nth-child(2) ellipse,
+        .mermaid .node:nth-child(2) polygon {
+            fill: #dcfce7 !important;
+            stroke: #166534 !important;
+        }
+        
+        .mermaid .node:nth-child(3) rect,
+        .mermaid .node:nth-child(3) circle,
+        .mermaid .node:nth-child(3) ellipse,
+        .mermaid .node:nth-child(3) polygon {
+            fill: #fef3c7 !important;
+            stroke: #92400e !important;
+        }
+        
+        .mermaid .node:nth-child(4) rect,
+        .mermaid .node:nth-child(4) circle,
+        .mermaid .node:nth-child(4) ellipse,
+        .mermaid .node:nth-child(4) polygon {
+            fill: #fce7f3 !important;
+            stroke: #be185d !important;
+        }
+        
+        .mermaid .node:nth-child(5) rect,
+        .mermaid .node:nth-child(5) circle,
+        .mermaid .node:nth-child(5) ellipse,
+        .mermaid .node:nth-child(5) polygon {
+            fill: #f3e8ff !important;
+            stroke: #7c3aed !important;
+        }
+        
+        .mermaid .node:nth-child(6) rect,
+        .mermaid .node:nth-child(6) circle,
+        .mermaid .node:nth-child(6) ellipse,
+        .mermaid .node:nth-child(6) polygon {
+            fill: #ecfdf5 !important;
+            stroke: #047857 !important;
+        }
+        
+        .mermaid .node:nth-child(7) rect,
+        .mermaid .node:nth-child(7) circle,
+        .mermaid .node:nth-child(7) ellipse,
+        .mermaid .node:nth-child(7) polygon {
+            fill: #fffbeb !important;
+            stroke: #b45309 !important;
+        }
+        
+        /* Ensure text contrast for colored nodes */
+        .mermaid .node:nth-child(1) .label,
+        .mermaid .node:nth-child(1) .nodeLabel { 
+            color: #1e3a8a !important; 
+            fill: #1e3a8a !important; 
+        }
+        .mermaid .node:nth-child(2) .label,
+        .mermaid .node:nth-child(2) .nodeLabel { 
+            color: #14532d !important; 
+            fill: #14532d !important; 
+        }
+        .mermaid .node:nth-child(3) .label,
+        .mermaid .node:nth-child(3) .nodeLabel { 
+            color: #78350f !important; 
+            fill: #78350f !important; 
+        }
+        .mermaid .node:nth-child(4) .label,
+        .mermaid .node:nth-child(4) .nodeLabel { 
+            color: #9f1239 !important; 
+            fill: #9f1239 !important; 
+        }
+        .mermaid .node:nth-child(5) .label,
+        .mermaid .node:nth-child(5) .nodeLabel { 
+            color: #5b21b6 !important; 
+            fill: #5b21b6 !important; 
+        }
+        .mermaid .node:nth-child(6) .label,
+        .mermaid .node:nth-child(6) .nodeLabel { 
+            color: #065f46 !important; 
+            fill: #065f46 !important; 
+        }
+        .mermaid .node:nth-child(7) .label,
+        .mermaid .node:nth-child(7) .nodeLabel { 
+            color: #92400e !important; 
+            fill: #92400e !important; 
+        }
+        
+        /* Edge styling for better visibility */
+        .mermaid .edgePath .path {
+            stroke: #6b7280 !important;
+            stroke-width: 2px !important;
+            filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
+        }
+        
+        .mermaid .edgeLabel {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            color: #374151 !important;
+            font-family: 'Inter', sans-serif !important;
+            font-size: 12px !important;
+            font-weight: 500 !important;
+            padding: 4px 8px !important;
+            border-radius: 4px !important;
+            border: 1px solid #e5e7eb !important;
+        }
+        
+        /* Arrow styling */
+        .mermaid .arrowheadPath {
+            fill: #6b7280 !important;
+            stroke: #6b7280 !important;
+        }
+        
+        /* Responsive controls for smaller screens */
+        @media (max-width: 1024px) {
+            .mermaid-control-btn:not(.reset-zoom) {
+                display: none;
+            }
+            .mermaid-controls {
+                top: auto;
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+
+        /* Responsive adjustments for small screens */
+        @media (max-width: 768px) {
+            /* Make the mermaid chart container scrollable */
+            .mermaid-container {
+                overflow: auto;
+            }
+            
+            /* Ensure the chart fits the container width */
+            .mermaid-container .mermaid {
+                max-width: 100%;
+            }
+        }
+    </style>
+  <base target="_blank">
+</head>
+
+  <body class="font-sans bg-gray-50 text-gray-800 max-w-full overflow-x-hidden">
+
+    <!-- Toggle button for mobile -->
+    <button id="toc-toggle" class="fixed top-4 left-4 z-50 lg:hidden p-2 bg-white rounded shadow text-gray-700">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Fixed Table of Contents -->
+    <nav id="toc-nav" class="fixed left-0 top-0 h-screen w-80 bg-white border-r border-gray-200 z-50 overflow-y-auto shadow-lg transform -translate-x-full lg:translate-x-0 lg:block transition-transform duration-300">
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="font-serif text-lg font-bold text-gray-800">Índice de Conteúdos</h3>
+          <button id="toc-close" class="lg:hidden p-2 text-gray-500 hover:text-gray-700">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <ul class="space-y-3 text-sm">
+          <li>
+            <a href="#introducao" class="block text-blue-600 hover:text-blue-800 font-medium">1. Introdução e Fundamentos</a>
+          </li>
+          <li>
+            <a href="#perfil" class="block text-gray-600 hover:text-gray-800 ml-3">1.1 Perfil do Público-Alvo</a>
+          </li>
+          <li>
+            <a href="#deficits" class="block text-gray-600 hover:text-gray-800 ml-3">1.2 Déficits Cognitivos</a>
+          </li>
+          <li>
+            <a href="#adaptacoes" class="block text-gray-600 hover:text-gray-800 ml-3">1.3 Adaptações Necessárias</a>
+          </li>
+          <li>
+            <a href="#memoria" class="block text-blue-600 hover:text-blue-800 font-medium">2. Atividades de Memória</a>
+          </li>
+          <li>
+            <a href="#jogo-memoria" class="block text-gray-600 hover:text-gray-800 ml-3">2.1 Jogo da Memória</a>
+          </li>
+          <li>
+            <a href="#quebra-cabeca" class="block text-gray-600 hover:text-gray-800 ml-3">2.2 Quebra-Cabeça Fotográfico</a>
+          </li>
+          <li>
+            <a href="#album-lemb" class="block text-gray-600 hover:text-gray-800 ml-3">2.3 Álbum de Lembranças</a>
+          </li>
+          <li>
+            <a href="#atencao" class="block text-blue-600 hover:text-blue-800 font-medium">3. Atividades de Atenção</a>
+          </li>
+          <li>
+            <a href="#caca-simbolos" class="block text-gray-600 hover:text-gray-800 ml-3">3.1 Caça-Símbolos</a>
+          </li>
+          <li>
+            <a href="#desenho" class="block text-gray-600 hover:text-gray-800 ml-3">3.2 Continue o Desenho</a>
+          </li>
+          <li>
+            <a href="#sequencia" class="block text-gray-600 hover:text-gray-800 ml-3">3.3 Sequência Lógica</a>
+          </li>
+          <li>
+            <a href="#raciocinio" class="block text-blue-600 hover:text-blue-800 font-medium">4. Atividades de Raciocínio</a>
+          </li>
+          <li>
+            <a href="#classificacao" class="block text-gray-600 hover:text-gray-800 ml-3">4.1 Classificação</a>
+          </li>
+          <li>
+            <a href="#domino" class="block text-gray-600 hover:text-gray-800 ml-3">4.2 Dominó Adaptado</a>
+          </li>
+          <li>
+            <a href="#labirintos" class="block text-gray-600 hover:text-gray-800 ml-3">4.3 Labirintos Simples</a>
+          </li>
+          <li>
+            <a href="#motora" class="block text-blue-600 hover:text-blue-800 font-medium">5. Atividades Motoras</a>
+          </li>
+          <li>
+            <a href="#colagem" class="block text-gray-600 hover:text-gray-800 ml-3">5.1 Colagem e Corte</a>
+          </li>
+          <li>
+            <a href="#colorir" class="block text-gray-600 hover:text-gray-800 ml-3">5.2 Colorir e Pintar</a>
+          </li>
+          <li>
+            <a href="#dobraduras" class="block text-gray-600 hover:text-gray-800 ml-3">5.3 Dobraduras Simples</a>
+          </li>
+          <li>
+            <a href="#sensoriais" class="block text-blue-600 hover:text-blue-800 font-medium">6. Atividades Sensoriais</a>
+          </li>
+          <li>
+            <a href="#texturas" class="block text-gray-600 hover:text-gray-800 ml-3">6.1 Exploração de Texturas</a>
+          </li>
+          <li>
+            <a href="#massinha" class="block text-gray-600 hover:text-gray-800 ml-3">6.2 Massinha de Modelar</a>
+          </li>
+          <li>
+            <a href="#musical" class="block text-gray-600 hover:text-gray-800 ml-3">6.3 Estimulação Musical</a>
+          </li>
+          <li>
+            <a href="#grupo" class="block text-blue-600 hover:text-blue-800 font-medium">7. Atividades em Grupo</a>
+          </li>
+          <li>
+            <a href="#bingo" class="block text-gray-600 hover:text-gray-800 ml-3">7.1 Bingo Adaptado</a>
+          </li>
+          <li>
+            <a href="#conversa" class="block text-gray-600 hover:text-gray-800 ml-3">7.2 Rodas de Conversa</a>
+          </li>
+          <li>
+            <a href="#rotina" class="block text-gray-600 hover:text-gray-800 ml-3">7.3 Rotina Simulada</a>
+          </li>
+          <li>
+            <a href="#implementacao" class="block text-blue-600 hover:text-blue-800 font-medium">8. Implementação Prática</a>
+          </li>
+          <li>
+            <a href="#ambiente" class="block text-gray-600 hover:text-gray-800 ml-3">8.1 Ambiente Físico</a>
+          </li>
+          <li>
+            <a href="#planejamento" class="block text-gray-600 hover:text-gray-800 ml-3">8.2 Planejamento</a>
+          </li>
+          <li>
+            <a href="#avaliacao" class="block text-gray-600 hover:text-gray-800 ml-3">8.3 Avaliação</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="ml-0 lg:ml-80 min-h-screen">
+
+      <!-- Hero Section -->
+      <header class="bg-gradient-to-br from-amber-50 to-orange-100 py-16 px-8">
+        <div class="max-w-6xl mx-auto">
+          <!-- Bento Grid Layout -->
+          <div class="grid grid-cols-12 gap-6 items-center">
+            <!-- Title Section -->
+            <div class="col-span-12 lg:col-span-7">
+              <h1 class="font-serif text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-6">
+                <em class="text-orange-700">Atividades de Estimulação Cognitiva</em>
+                <br>
+                para Idosos em Casa de Repouso
+              </h1>
+              <p class="text-xl text-gray-700 font-light leading-relaxed">
+                Um guia prático de implementação baseado em evidências científicas,
+                adaptado para idosos com Alzheimer estágio 2, deficiência intelectual
+                e baixa escolaridade.
+              </p>
+            </div>
+
+            <!-- Visual Element -->
+            <div class="col-span-12 lg:col-span-5">
+              <div class="relative">
+                <img src="https://kimi-img.moonshot.cn/pub/icon/spinner.svg" alt="Elderly hands engaged in therapeutic activity" class="rounded-2xl shadow-2xl w-full h-64 object-cover" size="medium" aspect="wide" style="photo" query="elderly hands activity therapy" referrerpolicy="no-referrer" />
+                <div class="absolute inset-0 bg-gradient-to-t from-orange-900/20 to-transparent rounded-2xl"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Key Highlights Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+            <div class="bg-white/70 backdrop-blur-sm p-6 rounded-xl shadow-lg">
+              <i class="fas fa-brain text-3xl text-orange-600 mb-4"></i>
+              <h3 class="font-serif text-lg font-semibold text-gray-900 mb-2">Estimulação Multisensorial</h3>
+              <p class="text-gray-700 text-sm">Atividades visuais, táteis e auditivas adaptadas ao perfil cognitivo.</p>
+            </div>
+            <div class="bg-white/70 backdrop-blur-sm p-6 rounded-xl shadow-lg">
+              <i class="fas fa-users text-3xl text-orange-600 mb-4"></i>
+              <h3 class="font-serif text-lg font-semibold text-gray-900 mb-2">Universalmente Acessíveis</h3>
+              <p class="text-gray-700 text-sm">Adaptações para baixa escolaridade e limitações motoras.</p>
+            </div>
+            <div class="bg-white/70 backdrop-blur-sm p-6 rounded-xl shadow-lg">
+              <i class="fas fa-heart text-3xl text-orange-600 mb-4"></i>
+              <h3 class="font-serif text-lg font-semibold text-gray-900 mb-2">Garantia de Sucesso</h3>
+              <p class="text-gray-700 text-sm">Foco no processo e reforço positivo contínuo.</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content Sections -->
+
+      <!-- Section 1: Introduction -->
+      <section id="introducao" class="py-16 px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="font-serif text-3xl font-bold text-gray-900 mb-12 border-l-4 border-orange-500 pl-6">
+            Fundamentos para Planejamento das Atividades
+          </h2>
+
+          <div id="perfil" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Características do Público-Alvo</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h4 class="font-serif text-xl font-semibold text-gray-700 mb-4">Perfil Demográfico e Cognitivo</h4>
+
+                <p class="text-gray-700 leading-relaxed mb-6">
+                  O planejamento de atividades de estimulação cognitiva para idosos institucionalizados exige compreensão aprofundada das características específicas do grupo atendido. A <strong>média de idade de 83 anos</strong> posiciona esses residentes na faixa de idosos avançados, onde as alterações fisiológicas do envelhecimento se somam às patologias neurodegenerativas presentes <a href="#ref-136" class="text-blue-600 text-sm">[136]</a>
+                  <a href="#ref-155" class="text-blue-600 text-sm">[155]</a>.
+                </p>
+
+                <div class="bg-blue-50 p-6 rounded-lg mb-6">
+                  <h5 class="font-semibold text-blue-900 mb-3">Principais Características</h5>
+                  <ul class="space-y-2">
+                    <li class="flex items-start">
+                      <i class="fas fa-circle text-blue-500 text-xs mt-2 mr-3"></i>
+                      <span><strong>Alzheimer estágio 2:</strong> comprometimento da memória episódica recente e funções executivas</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-circle text-blue-500 text-xs mt-2 mr-3"></i>
+                      <span><strong>Deficiência intelectual:</strong> limitações no desenvolvimento cognitivo prévio</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-circle text-blue-500 text-xs mt-2 mr-3"></i>
+                      <span><strong>Baixa escolaridade:</strong> necessidade de recursos visuais e táteis</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div>
+                <img src="https://kimi-img.moonshot.cn/pub/icon/spinner.svg" alt="Elderly person participating in cognitive activity" class="w-full h-64 object-cover rounded-lg shadow-lg mb-6" size="medium" aspect="wide" style="photo" query="elderly cognitive activity" referrerpolicy="no-referrer" />
+
+                <div class="bg-amber-50 p-6 rounded-lg">
+                  <h5 class="font-semibold text-amber-900 mb-3">Implicações para o Planejamento</h5>
+                  <div class="space-y-3">
+                    <div class="flex items-center">
+                      <i class="fas fa-eye text-amber-600 mr-3"></i>
+                      <span class="text-sm">Materiais com alto contraste e tamanhos generosos</span>
+                    </div>
+                    <div class="flex items-center">
+                      <i class="fas fa-clock text-amber-600 mr-3"></i>
+                      <span class="text-sm">Sessões de 15-20 minutos para evitar fadiga</span>
+                    </div>
+                    <div class="flex items-center">
+                      <i class="fas fa-image text-amber-600 mr-3"></i>
+                      <span class="text-sm">Imagens fotográficas sobre representações abstratas</span>
+                    </div>
+                    <div class="flex items-center">
+                      <i class="fas fa-hand-paper text-amber-600 mr-3"></i>
+                      <span class="text-sm">Adaptações para a residente com hemiparesia</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="deficits" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Déficits Cognitivos a Considerar</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+              <div class="bg-red-50 p-6 rounded-lg">
+                <i class="fas fa-exclamation-triangle text-red-600 text-2xl mb-4"></i>
+                <h4 class="font-semibold text-red-900 mb-3">Falta de Concentração</h4>
+                <p class="text-red-800 text-sm">Atenção sustentada comprometida, necessidade de reinstrução constante e dificuldade em completar atividades sequenciais <a href="#ref-31" class="text-blue-600">[31]</a>
+                  <a href="#ref-91" class="text-blue-600">[91]</a>.
+                </p>
+              </div>
+              <div class="bg-orange-50 p-6 rounded-lg">
+                <i class="fas fa-puzzle-piece text-orange-600 text-2xl mb-4"></i>
+                <h4 class="font-semibold text-orange-900 mb-3">Falta de Continuidade</h4>
+                <p class="text-orange-800 text-sm">Dificuldade em iniciar, manter e completar sequências de ações de forma organizada devido ao comprometimento da função executiva <a href="#ref-93" class="text-blue-600">[93]</a>
+                  <a href="#ref-169" class="text-blue-600">[169]</a>.
+                </p>
+              </div>
+              <div class="bg-yellow-50 p-6 rounded-lg">
+                <i class="fas fa-wind text-yellow-600 text-2xl mb-4"></i>
+                <h4 class="font-semibold text-yellow-900 mb-3">Inquietação</h4>
+                <p class="text-yellow-800 text-sm">Manifestações comportamentais comuns em demências, especialmente no período da tarde (sundowning) <a href="#ref-95" class="text-blue-600">[95]</a>
+                  <a href="#ref-171" class="text-blue-600">[171]</a>.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div id="adaptacoes" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Princípios de Adaptação das Atividades</h3>
+
+            <div class="bg-green-50 p-8 rounded-xl">
+              <h4 class="font-serif text-xl font-semibold text-green-900 mb-6">Adaptação para Residente com Hemiparesia</h4>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h5 class="font-semibold text-green-800 mb-3">Posicionamento Estratégico</h5>
+                  <ul class="space-y-2 text-sm text-green-700">
+                    <li>• Materiais sempre à direita do corpo</li>
+                    <li>• Ângulo de 45 graus para alcance fácil</li>
+                    <li>• Fixação do papel com fita adesiva</li>
+                    <li>• Uso de superfícies antiderrapantes</li>
+                  </ul>
+                </div>
+                <div>
+                  <h5 class="font-semibold text-green-800 mb-3">Instrumentos Adaptados</h5>
+                  <ul class="space-y-2 text-sm text-green-700">
+                    <li>• Tesoura de segurança para mão direita</li>
+                    <li>• Lápis de cor triangular</li>
+                    <li>• Canetinhas de corpo grosso</li>
+                    <li>• Materiais de maior tamanho</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="mt-6 p-4 bg-green-100 rounded-lg">
+                <p class="text-green-800 text-sm italic">
+                  <i class="fas fa-lightbulb text-green-600 mr-2"></i>
+                  A inclusão bem-sucedida desta residente serve como modelo de prática inclusiva para toda a equipe, demonstrando que adaptações para um indivíduo frequentemente beneficiam todo o grupo <a href="#ref-126" class="text-blue-600">[126]</a>
+                  <a href="#ref-171" class="text-blue-600">[171]</a>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Memory Activities -->
+      <section id="memoria" class="py-16 px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="font-serif text-3xl font-bold text-gray-900 mb-12 border-l-4 border-blue-500 pl-6">
+            Atividades de Estimulação da Memória
+          </h2>
+
+          <div id="jogo-memoria" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Jogo da Memória com Imagens</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h4 class="font-serif text-xl font-semibold text-gray-700 mb-4">Preparação do Material</h4>
+
+                <div class="bg-blue-50 p-6 rounded-lg mb-6">
+                  <h5 class="font-semibold text-blue-900 mb-3">Especificações Técnicas</h5>
+                  <div class="overflow-x-auto">
+                    <table class="w-full text-sm">
+                      <thead>
+                        <tr class="border-b border-blue-200">
+                          <th class="text-left py-2">Especificação</th>
+                          <th class="text-left py-2">Parâmetro</th>
+                          <th class="text-left py-2">Justificativa</th>
+                        </tr>
+                      </thead>
+                      <tbody class="text-blue-800">
+                        <tr class="border-b border-blue-100">
+                          <td class="py-2 font-medium">Dimensão dos cartões</td>
+                          <td class="py-2">10×10 cm (mínimo)</td>
+                          <td class="py-2">Visibilidade para acuidade visual reduzida</td>
+                        </tr>
+                        <tr class="border-b border-blue-100">
+                          <td class="py-2 font-medium">Papel base</td>
+                          <td class="py-2">180-240 g/m²</td>
+                          <td class="py-2">Rigidez para manuseio e durabilidade</td>
+                        </tr>
+                        <tr class="border-b border-blue-100">
+                          <td class="py-2 font-medium">Impressão</td>
+                          <td class="py-2">300 dpi, cores vibrantes</td>
+                          <td class="py-2">Maximização do reconhecimento visual</td>
+                        </tr>
+                        <tr>
+                          <td class="py-2 font-medium">Acabamento</td>
+                          <td class="py-2">Cantos arredondados</td>
+                          <td class="py-2">Segurança na manipulação</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <p class="text-gray-700 leading-relaxed">
+                  A seleção de imagens deve privilegiar objetos de reconhecimento imediato: frutas tradicionais, animais domésticos, objetos domésticos de uso cotidiano e, sempre que possível, fotografias de familiares dos próprios residentes <a href="#ref-117" class="text-blue-600">[117]</a>
+                  <a href="#ref-184" class="text-blue-600">[184]</a>.
+                </p>
+              </div>
+
+              <div>
+                <img src="https://kimi-img.moonshot.cn/pub/icon/spinner.svg" alt="Memory game cards with large colorful images" class="w-full h-48 object-cover rounded-lg shadow-lg mb-6" size="medium" aspect="wide" color="green" style="photo" query="memory game cards large colorful images" referrerpolicy="no-referrer" />
+
+                <div class="bg-amber-50 p-6 rounded-lg">
+                  <h5 class="font-semibold text-amber-900 mb-3">Modalidades de Execução</h5>
+                  <div class="space-y-3">
+                    <div class="flex items-start">
+                      <i class="fas fa-play text-amber-600 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-amber-800">Versão Simplificada</span>
+                        <p class="text-amber-700 text-sm">3-4 pares de imagens (6-8 cartões) para completar em 5-10 minutos</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-leaf text-amber-600 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-amber-800">Temas Temáticos</span>
+                        <p class="text-amber-700 text-sm">Alimentos, animais, roupas, ferramentas com conversas paralelas</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-heart text-amber-600 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-amber-800">Personalização Familiar</span>
+                        <p class="text-amber-700 text-sm">Fotos de netos, casamentos, viagens para reminiscência terapêutica</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="quebra-cabeca" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Quebra-Cabeça de Fotografia</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <div class="lg:col-span-2">
+                <h4 class="font-serif text-xl font-semibold text-gray-700 mb-4">Construção do Material</h4>
+                <p class="text-gray-700 leading-relaxed mb-6">
+                  A criação de quebra-cabeças personalizados a partir de fotografias oferece vantagens significativas sobre produtos comerciais genéricos: <strong>personalização temática</strong>, <strong>controle de complexidade</strong> e <strong>conexão com histórias de vida</strong>. Fotografias com fundo uniforme e objeto principal centralizado são mais acessíveis que cenas complexas com múltiplos elementos <a href="#ref-117" class="text-blue-600">[117]</a>
+                  <a href="#ref-184" class="text-blue-600">[184]</a>.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                  <div class="bg-green-50 p-4 rounded-lg text-center">
+                    <i class="fas fa-seedling text-green-600 text-2xl mb-2"></i>
+                    <h5 class="font-semibold text-green-800">Nível Inicial</h5>
+                    <p class="text-green-700 text-sm">4-6 peças
+                      <br>Formato irregular
+                      <br>Bordas definidas
+                    </p>
+                  </div>
+                  <div class="bg-blue-50 p-4 rounded-lg text-center">
+                    <i class="fas fa-tree text-blue-600 text-2xl mb-2"></i>
+                    <h5 class="font-semibold text-blue-800">Intermediário</h5>
+                    <p class="text-blue-700 text-sm">8-12 peças
+                      <br>Recortes curvos
+                      <br>Sem bordas retas
+                    </p>
+                  </div>
+                  <div class="bg-purple-50 p-4 rounded-lg text-center">
+                    <i class="fas fa-mountain text-purple-600 text-2xl mb-2"></i>
+                    <h5 class="font-semibold text-purple-800">Avançado</h5>
+                    <p class="text-purple-700 text-sm">16-20 peças
+                      <br>Formato tradicional
+                      <br>Múltiplos elementos
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <img src="https://kimi-img.moonshot.cn/pub/icon/spinner.svg" alt="Personalized photo puzzles for elderly cognitive stimulation" class="w-full h-48 object-cover rounded-lg shadow-lg mb-4" size="medium" aspect="wide" style="photo" query="personalized photo puzzles elderly cognitive therapy" referrerpolicy="no-referrer" />
+
+                <div class="bg-indigo-50 p-4 rounded-lg">
+                  <h5 class="font-semibold text-indigo-900 mb-3">Benefícios Terapêuticos</h5>
+                  <ul class="space-y-2 text-sm text-indigo-800">
+                    <li class="flex items-start">
+                      <i class="fas fa-brain text-indigo-600 mt-1 mr-2"></i>
+                      <span>Memória biográfica ativada por imagens significativas</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-eye text-indigo-600 mt-1 mr-2"></i>
+                      <span>Percepção visual e integração de partes no todo</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-hand-paper text-indigo-600 mt-1 mr-2"></i>
+                      <span>Coordenação visomotora para encaixe das peças</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fas fa-users text-indigo-600 mt-1 mr-2"></i>
+                      <span>Reconhecimento de faces familiar preservado</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="album-lemb" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Álbum de Lembranças e Reminiscência</h3>
+
+            <div class="bg-gradient-to-r from-amber-50 to-orange-50 p-8 rounded-xl">
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                  <h4 class="font-serif text-xl font-semibold text-orange-900 mb-4">Estruturação do Material</h4>
+                  <p class="text-orange-800 leading-relaxed mb-4">
+                    O álbum de lembranças transcende a simples coleção de fotografias, constituindo <strong>ferramenta terapêutica estruturada de reminiscência</strong> — abordagem com evidências de eficácia em melhora de humor, redução de comportamentos desafiadores e fortalecimento da identidade <a href="#ref-117" class="text-blue-600">[117]</a>
+                    <a href="#ref-168" class="text-blue-600">[168]</a>.
+                  </p>
+
+                  <div class="space-y-3">
+                    <div class="flex items-start">
+                      <i class="fas fa-book text-orange-600 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-orange-800">Organização Temática</span>
+                        <p class="text-orange-700 text-sm">"Minha família", "Meu trabalho", "Minha casa", "Festas e celebrações"</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-font text-orange-600 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-orange-800">Legendas Claras</span>
+                        <p class="text-orange-700 text-sm">Letra de forma, tamanho 14 pontos, linguagem simples</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-hand-holding-heart text-orange-600 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-orange-800">Elementos Táteis</span>
+                        <p class="text-orange-700 text-sm">Amostra de tecido, semente de planta, botão de uniforme</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="font-serif text-xl font-semibold text-orange-900 mb-4">Condução da Atividade</h4>
+
+                  <div class="bg-white/70 p-6 rounded-lg mb-4">
+                    <h5 class="font-semibold text-orange-800 mb-3">Perguntas Abertas</h5>
+                    <div class="space-y-2 text-sm text-orange-700">
+                      <p>• "Quem é esta pessoa?"</p>
+                      <p>• "O que estavam fazendo aqui?"</p>
+                      <p>• "Você lembra deste dia?"</p>
+                      <p>• "Como era a casa onde morava?"</p>
+                    </div>
+                  </div>
+
+                  <div class="bg-white/70 p-6 rounded-lg">
+                    <h5 class="font-semibold text-orange-800 mb-3">Validação Emocional</h5>
+                    <div class="space-y-2 text-sm text-orange-700">
+                      <p>"Parece que foi um dia muito especial"</p>
+                      <p>"Essa pessoa era muito querida para você"</p>
+                      <p>"Gostaria de contar mais sobre isso?"</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Attention Activities -->
+      <section id="atencao" class="py-16 px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="font-serif text-3xl font-bold text-gray-900 mb-12 border-l-4 border-green-500 pl-6">
+            Atividades de Atenção e Concentração
+          </h2>
+
+          <div id="caca-simbolos" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Caça-Símbolos e Busca Visual</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h4 class="font-serif text-xl font-semibold text-gray-700 mb-4">Modelos de Atividade</h4>
+
+                <div class="space-y-6">
+                  <div class="bg-blue-50 p-6 rounded-lg">
+                    <div class="flex items-start mb-3">
+                      <i class="fas fa-search text-blue-600 text-xl mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-semibold text-blue-900">Localização Simples</h5>
+                        <p class="text-blue-800 text-sm">Grade 5×5 com 1 símbolo alvo para encontrar e marcar</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-green-50 p-6 rounded-lg">
+                    <div class="flex items-start mb-3">
+                      <i class="fas fa-link text-green-600 text-xl mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-semibold text-green-900">Sequência em Linha</h5>
+                        <p class="text-green-800 text-sm">Encontre 3 símbolos idênticos consecutivos em grade 6×6</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-purple-50 p-6 rounded-lg">
+                    <div class="flex items-start mb-3">
+                      <i class="fas fa-user-secret text-purple-600 text-xl mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-semibold text-purple-900">Figura Intrusa</h5>
+                        <p class="text-purple-800 text-sm">Identifique a figura diferente em conjunto de 15-20 desenhos</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-amber-50 p-6 rounded-lg">
+                    <div class="flex items-start mb-3">
+                      <i class="fas fa-calculator text-amber-600 text-xl mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-semibold text-amber-900">Contagem em Cena</h5>
+                        <p class="text-amber-800 text-sm">Conte quantos elementos específicos existem em desenho de cena</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <img src="https://kimi-img.moonshot.cn/pub/icon/spinner.svg" alt="Elderly woman completing visual search activity" class="w-full h-48 object-cover rounded-lg shadow-lg mb-6" size="medium" aspect="wide" style="photo" query="elderly visual search activity" referrerpolicy="no-referrer" />
+
+                <div class="bg-gray-50 p-6 rounded-lg">
+                  <h5 class="font-semibold text-gray-900 mb-4">Adaptações para Baixa Escolaridade</h5>
+
+                  <div class="space-y-4">
+                    <div class="flex items-start">
+                      <i class="fas fa-image text-blue-500 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-gray-800">Substituição de Números</span>
+                        <p class="text-gray-600 text-sm">"Encontre todos os gatinhos" em vez de "encontre todos os números 5"</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-compress text-blue-500 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-gray-800">Redução de Densidade</span>
+                        <p class="text-gray-600 text-sm">De 30-40 itens para 10-15 em versões adaptadas</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-palette text-blue-500 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-gray-800">Organização por Cores</span>
+                        <p class="text-gray-600 text-sm">Elementos alvo em cores vibrantes, distratores em tons suaves</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="desenho" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Continue o Desenho</h3>
+
+            <div class="bg-gradient-to-r from-teal-50 to-cyan-50 p-8 rounded-xl">
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                  <h4 class="font-serif text-xl font-semibold text-teal-900 mb-4">Estrutura da Atividade</h4>
+                  <p class="text-teal-800 leading-relaxed mb-6">
+                    A atividade de continuação de desenhos explora a capacidade de <strong>percepção de padrões e execução motora guiada visualmente</strong>, com estrutura que permite infinitas variações de complexidade. As linhas pontilhadas ou tracejadas oferecem guia de execução, reduzindo a ansiedade associada à "folha em branco" <a href="#ref-121" class="text-blue-600">[121]</a>
+                    <a href="#ref-161" class="text-blue-600">[161]</a>.
+                  </p>
+
+                  <div class="space-y-4">
+                    <div class="bg-white/70 p-4 rounded-lg">
+                      <h5 class="font-semibold text-teal-800 mb-2">Densidade do Guia Visual</h5>
+                      <ul class="text-sm text-teal-700 space-y-1">
+                        <li>• <strong>Pontilhado denso:</strong> máxima estrutura para iniciantes</li>
+                        <li>• <strong>Tracejado moderado:</strong> maior planejamento independente</li>
+                        <li>• <strong>Linha imaginária:</strong> nível avançado de autonomia</li>
+                      </ul>
+                    </div>
+
+                    <div class="bg-white/70 p-4 rounded-lg">
+                      <h5 class="font-semibold text-teal-800 mb-2">Tipos de Padrões</h5>
+                      <ul class="text-sm text-teal-700 space-y-1">
+                        <li>• <strong>Repetição:</strong> linha, curva, linha, curva...</li>
+                        <li>• <strong>Sequência cíclica:</strong> círculo, quadrado, triângulo...</li>
+                        <li>• <strong>Padrão naturalístico:</strong> folha, flor, folha, flor...</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="font-serif text-xl font-semibold text-teal-900 mb-4">Progressão de Dificuldade</h4>
+
+                  <div class="space-y-6">
+                    <div class="bg-white/70 p-4 rounded-lg">
+                      <div class="flex items-center mb-2">
+                        <i class="fas fa-seedling text-green-600 mr-2"></i>
+                        <h5 class="font-semibold text-teal-800">Inicial</h5>
+                      </div>
+                      <p class="text-sm text-teal-700">Linhas retas horizontais/verticais com pontilhado denso e curta distância</p>
+                      <div class="mt-2 text-xs text-teal-600">
+                        <strong>Critério:</strong> Traçado contínuo dentro dos limites do guia
+                      </div>
+                    </div>
+
+                    <div class="bg-white/70 p-4 rounded-lg">
+                      <div class="flex items-center mb-2">
+                        <i class="fas fa-tree text-blue-600 mr-2"></i>
+                        <h5 class="font-semibold text-teal-800">Intermediário</h5>
+                      </div>
+                      <p class="text-sm text-teal-700">Curvas suaves e padrões repetitivos com tracejado moderado</p>
+                      <div class="mt-2 text-xs text-teal-600">
+                        <strong>Critério:</strong> Reconhecimento e continuação do padrão sem verbalização
+                      </div>
+                    </div>
+
+                    <div class="bg-white/70 p-4 rounded-lg">
+                      <div class="flex items-center mb-2">
+                        <i class="fas fa-mountain text-purple-600 mr-2"></i>
+                        <h5 class="font-semibold text-teal-800">Avançado</h5>
+                      </div>
+                      <p class="text-sm text-teal-700">Simetria bilateral e combinação de elementos com pontos de referência esparsos</p>
+                      <div class="mt-2 text-xs text-teal-600">
+                        <strong>Critério:</strong> Antecipação do traçado antes da execução
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="sequencia" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Sequência Lógica com Formas</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h4 class="font-serif text-xl font-semibold text-gray-700 mb-4">Construção de Sequências</h4>
+                <p class="text-gray-700 leading-relaxed mb-6">
+                  A atividade de sequência lógica com formas geométricas constitui introdução acessível a conceitos de <strong>padrão, regularidade e predição</strong>, com materiais concretos que reduzem a abstração. Os padrões de três elementos com regra explícita (A-B-C, A-B-C...) estabelecem unidade mínima de complexidade que pode ser estendida <a href="#ref-128" class="text-blue-600">[128]</a>.
+                </p>
+
+                <div class="bg-indigo-50 p-6 rounded-lg mb-6">
+                  <h5 class="font-semibold text-indigo-900 mb-3">Tipos de Padrões</h5>
+                  <div class="space-y-3">
+                    <div class="flex items-start">
+                      <i class="fas fa-exchange-alt text-indigo-600 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-indigo-800">Alternância Simples</span>
+                        <p class="text-indigo-700 text-sm">círculo, quadrado, círculo, quadrado...</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-sort-amount-up text-indigo-600 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-indigo-800">Progressão de Tamanho</span>
+                        <p class="text-indigo-700 text-sm">grande, médio, pequeno, grande, médio...</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-layer-group text-indigo-600 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-indigo-800">Combinação de Atributos</span>
+                        <p class="text-indigo-700 text-sm">círculo vermelho, quadrado azul, círculo vermelho...</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <img src="https://kimi-img.moonshot.cn/pub/icon/spinner.svg" alt="Colored geometric shapes arranged in patterns for cognitive stimulation" class="w-full h-48 object-cover rounded-lg shadow-lg mb-6" size="medium" aspect="wide" query="colorful geometric shapes pattern" referrerpolicy="no-referrer" />
+
+                <div class="bg-pink-50 p-6 rounded-lg">
+                  <h5 class="font-semibold text-pink-900 mb-4">Formas de Execução Prática</h5>
+
+                  <div class="space-y-4">
+                    <div class="flex items-start">
+                      <i class="fas fa-paint-brush text-pink-600 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-pink-800">Desenho da Forma</span>
+                        <p class="text-pink-700 text-sm">Planejamento motor e representação mental completa do elemento faltante</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-cut text-pink-600 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-pink-800">Recorte e Colagem</span>
+                        <p class="text-pink-700 text-sm">Materialidade e possibilidade de rearranjo antes de fixação definitiva</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-comment text-pink-600 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-pink-800">Verbalização</span>
+                        <p class="text-pink-700 text-sm">Externaliza processamento e permite correção do cuidador</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Logical Reasoning -->
+      <section id="raciocinio" class="py-16 px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="font-serif text-3xl font-bold text-gray-900 mb-12 border-l-4 border-purple-500 pl-6">
+            Atividades de Raciocínio Lógico
+          </h2>
+
+          <div id="classificacao" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Classificação e Categorização</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h4 class="font-serif text-xl font-semibold text-gray-700 mb-4">Critérios de Organização</h4>
+
+                <div class="overflow-x-auto mb-6">
+                  <table class="w-full text-sm">
+                    <thead>
+                      <tr class="border-b-2 border-gray-200">
+                        <th class="text-left py-3 font-semibold text-gray-800">Critério</th>
+                        <th class="text-left py-3 font-semibold text-gray-800">Exemplo</th>
+                        <th class="text-left py-3 font-semibold text-gray-800">Nível</th>
+                      </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                      <tr class="border-b border-gray-100">
+                        <td class="py-3">
+                          <div class="flex items-center">
+                            <i class="fas fa-palette text-red-500 mr-2"></i>
+                            <span class="font-medium">Cor</span>
+                          </div>
+                        </td>
+                        <td class="py-3">Separar botões vermelhos, azuis e amarelos</td>
+                        <td class="py-3">
+                          <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Baixo</span>
+                        </td>
+                      </tr>
+                      <tr class="border-b border-gray-100">
+                        <td class="py-3">
+                          <div class="flex items-center">
+                            <i class="fas fa-ruler text-blue-500 mr-2"></i>
+                            <span class="font-medium">Tamanho</span>
+                          </div>
+                        </td>
+                        <td class="py-3">Ordenar copos de grande a pequeno</td>
+                        <td class="py-3">
+                          <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">Médio</span>
+                        </td>
+                      </tr>
+                      <tr class="border-b border-gray-100">
+                        <td class="py-3">
+                          <div class="flex items-center">
+                            <i class="fas fa-shapes text-purple-500 mr-2"></i>
+                            <span class="font-medium">Forma</span>
+                          </div>
+                        </td>
+                        <td class="py-3">Agrupar círculos, quadrados e triângulos</td>
+                        <td class="py-3">
+                          <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">Médio</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="py-3">
+                          <div class="flex items-center">
+                            <i class="fas fa-tools text-orange-500 mr-2"></i>
+                            <span class="font-medium">Função</span>
+                          </div>
+                        </td>
+                        <td class="py-3">Separar "coisas para comer" e "coisas para vestir"</td>
+                        <td class="py-3">
+                          <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">Alto</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-serif text-xl font-semibold text-gray-700 mb-4">Materiais Manipuláveis</h4>
+
+                <div class="space-y-6">
+                  <div class="bg-blue-50 p-6 rounded-lg">
+                    <div class="flex items-start mb-3">
+                      <i class="fas fa-newspaper text-blue-600 text-xl mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-semibold text-blue-900">Figuras de Revistas</h5>
+                        <p class="text-blue-800 text-sm">Variedade ilimitada a baixo custo, imagens realistas e contextualizadas para a geração atendida <a href="#ref-184" class="text-blue-600">[184]</a>.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-green-50 p-6 rounded-lg">
+                    <div class="flex items-start mb-3">
+                      <i class="fas fa-shapes text-green-600 text-xl mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-semibold text-green-900">Formas Geométricas</h5>
+                        <p class="text-green-800 text-sm">Uniformidade de categoria que elimina variáveis confundidoras, permitindo foco no critério de classificação alvo <a href="#ref-128" class="text-blue-600">[128]</a>.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-amber-50 p-6 rounded-lg">
+                    <div class="flex items-start mb-3">
+                      <i class="fas fa-box text-amber-600 text-xl mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-semibold text-amber-900">Objetos Reais</h5>
+                        <p class="text-amber-800 text-sm">Talheres, meias, potes, escovas - ativa memórias de uso e contextos de aplicação, elevando a significatividade <a href="#ref-183" class="text-blue-600">[183]</a>.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="domino" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Dominó Adaptado com Formas e Silhuetas</h3>
+
+            <div class="bg-gradient-to-r from-indigo-50 to-purple-50 p-8 rounded-xl">
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2">
+                  <h4 class="font-serif text-xl font-semibold text-indigo-900 mb-4">Confecção do Jogo</h4>
+                  <p class="text-indigo-800 leading-relaxed mb-6">
+                    O dominó adaptado preserva a estrutura familiar de jogo de mesa — peças retangulares, encaixe por correspondência, turnos alternados — com <strong>substituição de pontos numéricos por formas visuais</strong>, eliminando a barreira da não-alfabetização <a href="#ref-114" class="text-blue-600">[114]</a>.
+                  </p>
+
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-white/70 p-4 rounded-lg">
+                      <h5 class="font-semibold text-indigo-800">Especificações</h5>
+                      <ul class="text-sm text-indigo-700 mt-2 space-y-1">
+                        <li>• Cartolina 180-240 g/m²</li>
+                        <li>• Dimensões 8×4 cm</li>
+                        <li>• Cantos arredondados</li>
+                        <li>• Laminação opcional</li>
+                      </ul>
+                    </div>
+                    <div class="bg-white/70 p-4 rounded-lg">
+                      <h5 class="font-semibold text-indigo-800">Formas Sugeridas</h5>
+                      <ul class="text-sm text-indigo-700 mt-2 space-y-1">
+                        <li>• Animais domésticos</li>
+                        <li>• Frutas tradicionais</li>
+                        <li>• Objetos domésticos</li>
+                        <li>• Elementos da natureza</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="bg-white/70 p-6 rounded-lg mb-4">
+                    <h5 class="font-semibold text-indigo-800 mb-3">Regras Simplificadas</h5>
+                    <div class="space-y-2 text-sm text-indigo-700">
+                      <p>• <strong>Correspondência:</strong> figuras idênticas</p>
+                      <p>• <strong>Pontuação:</strong> eliminada</p>
+                      <p>• <strong>Objetivo:</strong> esvaziar as próprias peças</p>
+                      <p>• <strong>Turno:</strong> sinalizado visualmente</p>
+                      <p>• <strong>Assistência:</strong> identificação de jogadas</p>
+                    </div>
+                  </div>
+
+                  <div class="bg-white/70 p-6 rounded-lg">
+                    <h5 class="font-semibold text-indigo-800 mb-3">Benefícios Cognitivos</h5>
+                    <ul class="space-y-2 text-sm text-indigo-700">
+                      <li>• Reconhecimento de similaridades</li>
+                      <li>• Planejamento de jogadas simples</li>
+                      <li>• Memória de trabalho</li>
+                      <li>• Interação social estruturada</li>
+                      <li>• Familiaridade intergeracional</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="labirintos" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Labirintos Simples</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h4 class="font-serif text-xl font-semibold text-gray-700 mb-4">Estruturação dos Trajetos</h4>
+
+                <div class="bg-teal-50 p-6 rounded-lg mb-6">
+                  <h5 class="font-semibold text-teal-900 mb-3">Características Essenciais</h5>
+                  <div class="space-y-3">
+                    <div class="flex items-start">
+                      <i class="fas fa-road text-teal-600 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-teal-800">Caminhos Amplos</span>
+                        <p class="text-teal-700 text-sm">Largura mínima de 1,5-2 cm para traçado confortável sem precisão excessiva</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-route text-teal-600 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-teal-800">Trajeto Linear</span>
+                        <p class="text-teal-700 text-sm">Poucas curvas suaves, eliminando bifurcações múltiplas e decisões complexas</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-map-marker-alt text-teal-600 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-teal-800">Entrada/Saída Claras</span>
+                        <p class="text-teal-700 text-sm">Símbolos distintivos: animal na entrada, casa na saída</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <p class="text-gray-700 leading-relaxed">
+                  Os labirintos para idosos com comprometimento cognitivo diferenciam-se significativamente de versões infantis, priorizando <strong>clareza, acessibilidade e experiência de sucesso</strong>. A tematização - "ajude o gatinho a chegar em casa" - aumenta o engajamento emocional <a href="#ref-128" class="text-blue-600">[128]</a>.
+                </p>
+              </div>
+
+              <div>
+                <img src="https://kimi-img.moonshot.cn/pub/icon/spinner.svg" alt="Simple maze for elderly with large paths and clear symbols" class="w-full h-48 object-cover rounded-lg shadow-lg mb-6" size="medium" aspect="wide" query="simple maze elderly" referrerpolicy="no-referrer" />
+
+                <div class="bg-orange-50 p-6 rounded-lg">
+                  <h5 class="font-semibold text-orange-900 mb-4">Modalidades de Execução</h5>
+
+                  <div class="space-y-4">
+                    <div class="flex items-start">
+                      <i class="fas fa-pencil-alt text-orange-600 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-orange-800">Traçado Convencional</span>
+                        <p class="text-orange-700 text-sm">Lápis de cor ou canetinha para residentes com coordenação visomotora preservada</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-hand-pointer text-orange-600 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-orange-800">Orientação Tátil</span>
+                        <p class="text-orange-700 text-sm">Dedo ou objeto pontiagudo não cortante para tremor significativo</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-comments text-orange-600 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-orange-800">Resolução Verbalizada</span>
+                        <p class="text-orange-700 text-sm">Descrição passo a passo da direção para limitações motoras severas</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 5: Motor Coordination -->
+      <section id="motora" class="py-16 px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="font-serif text-3xl font-bold text-gray-900 mb-12 border-l-4 border-red-500 pl-6">
+            Atividades de Coordenação Motora
+          </h2>
+
+          <div id="colagem" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Colagem e Corte Criativo</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h4 class="font-serif text-xl font-semibold text-gray-700 mb-4">Técnicas de Recorte Progressivas</h4>
+
+                <div class="overflow-x-auto mb-6">
+                  <table class="w-full text-sm">
+                    <thead>
+                      <tr class="border-b-2 border-gray-200">
+                        <th class="text-left py-3 font-semibold text-gray-800">Etapa</th>
+                        <th class="text-left py-3 font-semibold text-gray-800">Técnica</th>
+                        <th class="text-left py-3 font-semibold text-gray-800">Material</th>
+                        <th class="text-left py-3 font-semibold text-gray-800">Adaptação</th>
+                      </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                      <tr class="border-b border-gray-100">
+                        <td class="py-3">
+                          <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Inicial</span>
+                        </td>
+                        <td class="py-3">Corte de linhas retas</td>
+                        <td class="py-3">Papel sulfite 75g/m²</td>
+                        <td class="py-3">Tesoura de segurança com mola</td>
+                      </tr>
+                      <tr class="border-b border-gray-100">
+                        <td class="py-3">
+                          <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">Intermediário</span>
+                        </td>
+                        <td class="py-3">Formas simples com contornos</td>
+                        <td class="py-3">Cartolina colorida</td>
+                        <td class="py-3">Demonstração simultânea</td>
+                      </tr>
+                      <tr>
+                        <td class="py-3">
+                          <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">Avançado</span>
+                        </td>
+                        <td class="py-3">Formas orgânicas com detalhes</td>
+                        <td class="py-3">Fotografias de revistas</td>
+                        <td class="py-3">Tesoura de ponta fina</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="bg-red-50 p-6 rounded-lg">
+                  <h5 class="font-semibold text-red-900 mb-3">Adaptações para Hemiparesia</h5>
+                  <div class="space-y-2 text-sm text-red-800">
+                    <p>• <strong>Posicionamento:</strong> materiais à direita do corpo em arco de fácil alcance</p>
+                    <p>• <strong>Estabilização:</strong> fita adesiva de baixa aderência, prende-papel, superfície antiderrapante</p>
+                    <p>• <strong>Instrumentos:</strong> tesoura para mão direita com mola auxiliar, lápis triangular</p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-serif text-xl font-semibold text-gray-700 mb-4">Projetos de Colagem</h4>
+
+                <div class="space-y-6">
+                  <div class="bg-blue-50 p-6 rounded-lg">
+                    <div class="flex items-start mb-3">
+                      <i class="fas fa-images text-blue-600 text-xl mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-semibold text-blue-900">Cenas Temáticas</h5>
+                        <p class="text-blue-800 text-sm">"Nossa cozinha", "Um dia no parque", "Animais que gostamos" - estrutura temática guia a seleção e organização</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-green-50 p-6 rounded-lg">
+                    <div class="flex items-start mb-3">
+                      <i class="fas fa-th text-green-600 text-xl mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-semibold text-green-900">Mosaicos Coloridos</h5>
+                        <p class="text-green-800 text-sm">Papéis coloridos rasgados ou recortados em formas variadas, permitindo expressão estética sem demanda de representação figurativa</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-amber-50 p-6 rounded-lg">
+                    <div class="flex items-start mb-3">
+                      <i class="fas fa-envelope text-amber-600 text-xl mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-semibold text-amber-900">Cartões Comemorativos</h5>
+                        <p class="text-amber-800 text-sm">Para aniversários de colegas, festas sazonais, ou envio a familiares - sentido de propósito eleva a motivação</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="colorir" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Colorir e Pintar</h3>
+
+            <div class="bg-gradient-to-r from-cyan-50 to-teal-50 p-8 rounded-xl">
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                  <h4 class="font-serif text-xl font-semibold text-teal-900 mb-4">Materiais Adaptados</h4>
+
+                  <div class="space-y-4">
+                    <div class="bg-white/70 p-4 rounded-lg">
+                      <div class="flex items-start mb-2">
+                        <i class="fas fa-palette text-teal-600 mr-3 mt-1"></i>
+                        <h5 class="font-semibold text-teal-800">Desenhos com Contornos Grossos</h5>
+                      </div>
+                      <p class="text-teal-700 text-sm">Linhas de 3-5 mm de espessura, espaços amplos para preenchimento (mínimo 2-3 cm), temas concretos e familiares</p>
+                    </div>
+
+                    <div class="bg-white/70 p-4 rounded-lg">
+                      <div class="flex items-start mb-2">
+                        <i class="fas fa-pencil-alt text-teal-600 mr-3 mt-1"></i>
+                        <h5 class="font-semibold text-teal-800">Lápis de Cor Triangular</h5>
+                      </div>
+                      <p class="text-teal-700 text-sm">Três faces planas, melhor pegada, não rolam sobre a mesa, mais estáveis para mãos com tremor</p>
+                    </div>
+
+                    <div class="bg-white/70 p-4 rounded-lg">
+                      <div class="flex items-start mb-2">
+                        <i class="fas fa-pen text-teal-600 mr-3 mt-1"></i>
+                        <h5 class="font-semibold text-teal-800">Canetinhas com Ponta Grossa</h5>
+                      </div>
+                      <p class="text-teal-700 text-sm">2-3 mm de diâmetro, tinta lavável, traço contínuo sem pressão excessiva, fácil correção de erros</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="font-serif text-xl font-semibold text-teal-900 mb-4">Temas Motivadores</h4>
+
+                  <div class="space-y-3 mb-6">
+                    <div class="flex items-center bg-white/70 p-3 rounded-lg">
+                      <i class="fas fa-paw text-green-600 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-teal-800">Animais</span>
+                        <p class="text-teal-700 text-xs">Da fazenda (galo, vaca) e domésticos (cachorro, gato)</p>
+                      </div>
+                    </div>
+                    <div class="flex items-center bg-white/70 p-3 rounded-lg">
+                      <i class="fas fa-leaf text-green-600 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-teal-800">Natureza</span>
+                        <p class="text-teal-700 text-xs">Flores (rosas, orquídeas), árvores frutíferas, paisagens</p>
+                      </div>
+                    </div>
+                    <div class="flex items-center bg-white/70 p-3 rounded-lg">
+                      <i class="fas fa-home text-green-600 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-teal-800">Cotidiano Doméstico</span>
+                        <p class="text-teal-700 text-xs">Cozinha com utensílios, sala de estar, quintal com tanque</p>
+                      </div>
+                    </div>
+                    <div class="flex items-center bg-white/70 p-3 rounded-lg">
+                      <i class="fas fa-birthday-cake text-green-600 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-teal-800">Celebrações</span>
+                        <p class="text-teal-700 text-xs">Natal, festa junina, aniversário, casamento</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-white/70 p-6 rounded-lg">
+                    <h5 class="font-semibold text-teal-800 mb-3">Técnicas de Pintura Diversificadas</h5>
+                    <ul class="space-y-2 text-sm text-teal-700">
+                      <li>• Preenchimento com movimentos amplos (pincéis largos 2-3 cm)</li>
+                      <li>• Uso de esponjas para texturas variadas</li>
+                      <li>• Pintura com dedos (tinta atóxica e removível)</li>
+                      <li>• Carimbar com esponja para efeitos visuais</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="dobraduras" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Dobraduras Simples</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h4 class="font-serif text-xl font-semibold text-gray-700 mb-4">Modelos Iniciais</h4>
+
+                <div class="overflow-x-auto">
+                  <table class="w-full text-sm">
+                    <thead>
+                      <tr class="border-b-2 border-gray-200">
+                        <th class="text-left py-3 font-semibold text-gray-800">Modelo</th>
+                        <th class="text-left py-3 font-semibold text-gray-800">Dobras</th>
+                        <th class="text-left py-3 font-semibold text-gray-800">Complexidade</th>
+                        <th class="text-left py-3 font-semibold text-gray-800">Produto</th>
+                      </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                      <tr class="border-b border-gray-100">
+                        <td class="py-3">Avião de papel</td>
+                        <td class="py-3">3 dobras totais</td>
+                        <td class="py-3">
+                          <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Inicial</span>
+                        </td>
+                        <td class="py-3">Brinquedo para lançamento</td>
+                      </tr>
+                      <tr class="border-b border-gray-100">
+                        <td class="py-3">Barquinho</td>
+                        <td class="py-3">4-5 dobras</td>
+                        <td class="py-3">
+                          <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">Intermediário</span>
+                        </td>
+                        <td class="py-3">Flutuação em água</td>
+                      </tr>
+                      <tr class="border-b border-gray-100">
+                        <td class="py-3">Chapéu de papel</td>
+                        <td class="py-3">3 dobras</td>
+                        <td class="py-3">
+                          <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Inicial</span>
+                        </td>
+                        <td class="py-3">Uso simbólico em brincadeira</td>
+                      </tr>
+                      <tr>
+                        <td class="py-3">Sapo pulador</td>
+                        <td class="py-3">6-8 dobras</td>
+                        <td class="py-3">
+                          <span class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">Avançado</span>
+                        </td>
+                        <td class="py-3">Brinquedo com ação</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="bg-green-50 p-6 rounded-lg mt-6">
+                  <h5 class="font-semibold text-green-900 mb-3">Preferência por Modelos com Função</h5>
+                  <p class="text-green-800 text-sm">
+                    Modelos que voam, flutuam, pulam, ou podem ser usados aumentam o significado e a satisfação com o produto, em contraste com dobraduras puramente decorativas que podem parecer "sem utilidade" para esta geração <a href="#ref-128" class="text-blue-600">[128]</a>.
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <img src="https://kimi-img.moonshot.cn/pub/icon/spinner.svg" alt="Simple paper origami for elderly" class="w-full h-48 object-cover rounded-lg shadow-lg mb-6" size="medium" aspect="wide" style="photo" query="simple origami elderly" referrerpolicy="no-referrer" />
+
+                <div class="bg-purple-50 p-6 rounded-lg">
+                  <h5 class="font-semibold text-purple-900 mb-4">Instrução Passo a Passo</h5>
+
+                  <div class="space-y-3">
+                    <div class="flex items-start">
+                      <i class="fas fa-eye text-purple-600 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-purple-800">Demonstração Simultânea</span>
+                        <p class="text-purple-700 text-sm">Cuidador executa cada dobra junto com o residente, permitindo imitação imediata</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-hand-paper text-purple-600 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-purple-800">Marcas de Dobra Prévias</span>
+                        <p class="text-purple-700 text-sm">Dobras leves no papel feitas pelo cuidador servem como guias táteis e visuais</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-microphone text-purple-600 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-purple-800">Verbalização de Etapas</span>
+                        <p class="text-purple-700 text-sm">"Primeiro, dobramos ao meio... agora, viramos para cá..." com pausas para processamento</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-heart text-purple-600 mt-1 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-purple-800">Aceitação de Resultados</span>
+                        <p class="text-purple-700 text-sm">O "avião" que não voa perfeitamente - o processo de tentativa é mais valioso que o produto ideal</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 6: Sensory Activities -->
+      <section id="sensoriais" class="py-16 px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="font-serif text-3xl font-bold text-gray-900 mb-12 border-l-4 border-pink-500 pl-6">
+            Atividades Sensoriais e Estéticas
+          </h2>
+
+          <div id="texturas" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Exploração de Texturas</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h4 class="font-serif text-xl font-semibold text-gray-700 mb-4">Caixa Sensorial Tátil</h4>
+
+                <div class="bg-amber-50 p-6 rounded-lg mb-6">
+                  <h5 class="font-semibold text-amber-900 mb-3">Estrutura e Materiais</h5>
+                  <p class="text-amber-800 text-sm mb-3">
+                    Recipiente fechado ou com abertura restrita (caixa de sapato com fenda, sacola de tecido opaco) contendo materiais de 8-12 texturas distintas: lixa fina, cetim liso, papelão ondulado, algodão macio, lã felpuda, tecido de rede, borracha, madeira lisa, esponja natural, veludo <a href="#ref-155" class="text-blue-600">[155]</a>.
+                  </p>
+                  <div class="grid grid-cols-2 gap-2 text-xs text-amber-700">
+                    <div>• Lixa fina</div>
+                    <div>• Cetim liso</div>
+                    <div>• Papelão ondulado</div>
+                    <div>• Algodão macio</div>
+                    <div>• Lã felpuda</div>
+                    <div>• Tecido de rede</div>
+                    <div>• Borracha</div>
+                    <div>• Madeira lisa</div>
+                  </div>
+                </div>
+
+                <div class="bg-orange-50 p-6 rounded-lg">
+                  <h5 class="font-semibold text-orange-900 mb-3">Modo de Execução</h5>
+                  <div class="space-y-2 text-sm text-orange-800">
+                    <p>• Residente introduz a mão sem visualização, explorando pelo tato puro</p>
+                    <p>• Identificação verbal opcional: "isso é áspero", "isso é macio"</p>
+                    <p>• Correspondência posterior com visualização para confirmar/identificar</p>
+                    <p>• Pode ser individual para acalmação ou em grupo com compartilhamento</p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-serif text-xl font-semibold text-gray-700 mb-4">Colagem Sensorial</h4>
+
+                <p class="text-gray-700 leading-relaxed mb-6">
+                  A colagem sensorial expande a exploração tátil para <strong>produção estética permanente</strong>: combinação de materiais variados em superfície comum (cartolina A3, chapa de MDF), criando <strong>painéis táteis para exposição</strong>
+                  <a href="#ref-155" class="text-blue-600">[155]</a>.
+                </p>
+
+                <div class="bg-pink-50 p-6 rounded-lg mb-6">
+                  <h5 class="font-semibold text-pink-900 mb-3">Organização Temática</h5>
+                  <div class="space-y-2 text-sm text-pink-800">
+                    <div class="flex items-start">
+                      <i class="fas fa-seedling text-pink-600 mr-2 mt-1"></i>
+                      <div>
+                        <span class="font-medium">"Jardim"</span>
+                        <p class="text-xs">grama artificial, terra, pedrinhas, flores de tecido</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-umbrella-beach text-pink-600 mr-2 mt-1"></i>
+                      <div>
+                        <span class="font-medium">"Praia"</span>
+                        <p class="text-xs">areia colada, conchas, tecido de rede</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="bg-purple-50 p-6 rounded-lg">
+                  <h5 class="font-semibold text-purple-900 mb-3">Materiais de Fixação</h5>
+                  <div class="space-y-1 text-sm text-purple-800">
+                    <p>• Cola branca para materiais leves</p>
+                    <p>• Cola quente (aplicada pelo cuidador) para durabilidade</p>
+                    <p>• Fita dupla-face para itens planos</p>
+                    <p>• Produto final exposto em área comum como contribuição do residente</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="massinha" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Atividades com Massinha de Modelar</h3>
+
+            <div class="bg-gradient-to-r from-violet-50 to-purple-50 p-8 rounded-xl">
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                  <h4 class="font-serif text-xl font-semibold text-purple-900 mb-4">Manipulação Livre</h4>
+                  <p class="text-purple-800 leading-relaxed mb-6">
+                    A manipulação livre da massinha de modelar — amassar, esticar, enrolar, apertar, sem objetivo definido — oferece <strong>descarga de tensão motora e estímulo tátil profundo</strong>. A resistência da massinha proporciona <strong>feedback proprioceptivo</strong> que pode ser calmante e organizador para sistema nervoso <a href="#ref-155" class="text-blue-600">[155]</a>.
+                  </p>
+
+                  <div class="bg-white/70 p-6 rounded-lg">
+                    <h5 class="font-semibold text-purple-800 mb-3">Benefícios da Abordagem Livre</h5>
+                    <ul class="space-y-2 text-sm text-purple-700">
+                      <li>• Ausência de demanda de produto final reduz ansiedade de performance</li>
+                      <li>• Indicada para residentes com inquietação</li>
+                      <li>• Excelente após atividades estruturadas frustrantes</li>
+                      <li>• Permite experimentação pura e descoberta sensorial</li>
+                      <li>• Ferramentas simples podem ser oferecidas sem impor estrutura</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="font-serif text-xl font-semibold text-purple-900 mb-4">Modelagem Dirigida</h4>
+
+                  <div class="space-y-4 mb-6">
+                    <div class="bg-white/70 p-4 rounded-lg">
+                      <div class="flex items-center mb-2">
+                        <i class="fas fa-circle text-green-600 mr-2"></i>
+                        <h5 class="font-semibold text-purple-800">Formas Geométricas Básicas</h5>
+                      </div>
+                      <p class="text-sm text-purple-700">Bolas, cobrinhas, rolar entre as palmas, esticar com movimento de pinça</p>
+                    </div>
+
+                    <div class="bg-white/70 p-4 rounded-lg">
+                      <div class="flex items-center mb-2">
+                        <i class="fas fa-stamp text-blue-600 mr-2"></i>
+                        <h5 class="font-semibold text-purple-800">Impressão de Objetos</h5>
+                      </div>
+                      <p class="text-sm text-purple-700">Chaves, botões, folhas, texturas de tecido - criando "fossilização tátil"</p>
+                    </div>
+
+                    <div class="bg-white/70 p-4 rounded-lg">
+                      <div class="flex items-center mb-2">
+                        <i class="fas fa-gem text-amber-600 mr-2"></i>
+                        <h5 class="font-semibold text-purple-800">Decoração com Materiais</h5>
+                      </div>
+                      <p class="text-sm text-purple-700">Sementes, glitter, pequenas contas pressionadas na superfície, criando relevo e padrão</p>
+                    </div>
+                  </div>
+
+                  <div class="bg-white/70 p-4 rounded-lg">
+                    <h5 class="font-semibold text-purple-800 mb-2">Progressão Sensível</h5>
+                    <p class="text-sm text-purple-700">
+                      Da manipulação livre para a dirigida deve ser sensível à resposta do residente: alguns encontram prazer e calma na ausência de objetivo, enquanto outros buscam o sentido de realização de um produto reconhecível.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="musical" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Estimulação Auditiva e Musical</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h4 class="font-serif text-xl font-semibold text-gray-700 mb-4">Musicoterapia Ativa</h4>
+
+                <div class="bg-blue-50 p-6 rounded-lg mb-6">
+                  <h5 class="font-semibold text-blue-900 mb-3">Repertório Histórico</h5>
+                  <div class="space-y-2 text-sm text-blue-800">
+                    <p>• Músicas da juventude do grupo (anos 1940-1960)</p>
+                    <p>• Samba, bolero, música sertaneja</p>
+                    <p>• Hinos religiosos conforme perfil do grupo</p>
+                    <p>• Letra em folha grande para residentes com preservação de leitura</p>
+                    <p>• Cantado em coro com cuidador liderando</p>
+                  </div>
+                </div>
+
+                <div class="bg-indigo-50 p-6 rounded-lg">
+                  <h5 class="font-semibold text-indigo-900 mb-3">Participação Corporal</h5>
+                  <div class="space-y-2 text-sm text-indigo-800">
+                    <p>• Batida de palmas e percussão corporal</p>
+                    <p>• Pés, coxas, peito como instrumentos</p>
+                    <p>• Ritmo coletivo que não depende de habilidade instrumental</p>
+                    <p>• Instrumentos simples: maracas, tamborim, reco-reco</p>
+                    <p>• Distribuídos para tocar em momentos específicos da música</p>
+                  </div>
+                </div>
+
+                <div class="mt-6 p-4 bg-blue-100 rounded-lg">
+                  <p class="text-blue-900 text-sm italic">
+                    <i class="fas fa-lightbulb text-blue-600 mr-2"></i>
+                    Pesquisa destaca eficácia na redução de agitação, melhora do humor, e aumento da socialização em idosos com demência, sendo particularmente valiosa no período da tarde para combater o "sundowning" <a href="#ref-16" class="text-blue-600">[16]</a>
+                    <a href="#ref-171" class="text-blue-600">[171]</a>.
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-serif text-xl font-semibold text-gray-700 mb-4">Associação Som-Imagem</h4>
+
+                <p class="text-gray-700 leading-relaxed mb-6">
+                  Estrutura a atenção auditiva e a <strong>memória de correspondência</strong> entre estímulos sonoros e representações visuais, promovendo concentração e associações semânticas.
+                </p>
+
+                <div class="space-y-4 mb-6">
+                  <div class="bg-green-50 p-4 rounded-lg">
+                    <div class="flex items-center mb-2">
+                      <i class="fas fa-dog text-green-600 mr-2"></i>
+                      <h5 class="font-semibold text-green-800">Sons de Animais</h5>
+                    </div>
+                    <p class="text-sm text-green-700">Cachorro latindo, gato miando, galo cantando, vaca mugindo - com cartões de figuras correspondentes para apontar</p>
+                  </div>
+
+                  <div class="bg-purple-50 p-4 rounded-lg">
+                    <div class="flex items-center mb-2">
+                      <i class="fas fa-guitar text-purple-600 mr-2"></i>
+                      <h5 class="font-semibold text-purple-800">Instrumentos Musicais</h5>
+                    </div>
+                    <p class="text-sm text-purple-700">Violão, piano, violino, pandeiro - ouvindo o som e selecionando a figura correta</p>
+                  </div>
+
+                  <div class="bg-amber-50 p-4 rounded-lg">
+                    <div class="flex items-center mb-2">
+                      <i class="fas fa-bell text-amber-600 mr-2"></i>
+                      <h5 class="font-semibold text-amber-800">Sons do Cotidiano</h5>
+                    </div>
+                    <p class="text-sm text-amber-700">Telefone tocando, campainha, liquidificador, chuva - evocando contextos e memórias associadas</p>
+                  </div>
+                </div>
+
+                <div class="bg-gray-50 p-6 rounded-lg">
+                  <h5 class="font-semibold text-gray-900 mb-3">Modalidades de Execução</h5>
+                  <div class="space-y-2 text-sm text-gray-700">
+                    <p>• Individual com fones de ouvido (reduzindo distração ambiental)</p>
+                    <p>• Em grupo com caixa de som (promovendo discussão e compartilhamento)</p>
+                    <p>• Uso de gravações de sons da juventude do grupo</p>
+                    <p>• Associação com fotografias pessoais quando relevante</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 7: Group Activities -->
+      <section id="grupo" class="py-16 px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="font-serif text-3xl font-bold text-gray-900 mb-12 border-l-4 border-yellow-500 pl-6">
+            Atividades em Grupo e Socialização
+          </h2>
+
+          <div id="bingo" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Bingo Adaptado com Imagens</h3>
+
+            <div class="bg-gradient-to-r from-yellow-50 to-amber-50 p-8 rounded-xl">
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                  <h4 class="font-serif text-xl font-semibold text-amber-900 mb-4">Estruturação do Jogo</h4>
+
+                  <div class="overflow-x-auto mb-6">
+                    <table class="w-full text-sm">
+                      <thead>
+                        <tr class="border-b-2 border-amber-200">
+                          <th class="text-left py-3 font-semibold text-amber-900">Elemento</th>
+                          <th class="text-left py-3 font-semibold text-amber-900">Adaptação</th>
+                          <th class="text-left py-3 font-semibold text-amber-900">Especificação</th>
+                        </tr>
+                      </thead>
+                      <tbody class="text-amber-800">
+                        <tr class="border-b border-amber-100">
+                          <td class="py-2">Cartelas</td>
+                          <td class="py-2">Figuras de objetos familiares</td>
+                          <td class="py-2">9-12 figuras em grid 3×3 ou 3×4</td>
+                        </tr>
+                        <tr class="border-b border-amber-100">
+                          <td class="py-2">Figuras</td>
+                          <td class="py-2">Fotografias ou desenhos realistas</td>
+                          <td class="py-2">Tamanho mínimo 3×3 cm</td>
+                        </tr>
+                        <tr class="border-b border-amber-100">
+                          <td class="py-2">Marcadores</td>
+                          <td class="py-2">Fichas grandes, adesivos, giz de cera</td>
+                          <td class="py-2">Fácil manipulação, não rolam</td>
+                        </tr>
+                        <tr>
+                          <td class="py-2">Chamada</td>
+                          <td class="py-2">Descrição verbal E visual</td>
+                          <td class="py-2">Exposição de cartão grande com figura</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <div class="bg-white/70 p-6 rounded-lg">
+                    <h5 class="font-semibold text-amber-800 mb-3">Variações Temáticas</h5>
+                    <div class="grid grid-cols-2 gap-2 text-sm text-amber-700">
+                      <div>• Frutas e legumes</div>
+                      <div>• Animais domésticos</div>
+                      <div>• Objetos da casa</div>
+                      <div>• Meios de transporte</div>
+                      <div>• Vestuário</div>
+                      <div>• Flores e plantas</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="font-serif text-xl font-semibold text-amber-900 mb-4">Condução Inclusiva</h4>
+
+                  <div class="space-y-4">
+                    <div class="bg-white/70 p-4 rounded-lg">
+                      <div class="flex items-start mb-2">
+                        <i class="fas fa-tachometer-alt text-amber-600 mr-3 mt-1"></i>
+                        <h5 class="font-semibold text-amber-800">Ritmo Lento</h5>
+                      </div>
+                      <p class="text-sm text-amber-700">10-15 segundos entre chamadas, permitindo localização visual, reconhecimento e marcação</p>
+                    </div>
+
+                    <div class="bg-white/70 p-4 rounded-lg">
+                      <div class="flex items-start mb-2">
+                        <i class="fas fa-redo text-amber-600 mr-3 mt-1"></i>
+                        <h5 class="font-semibold text-amber-800">Repetição sem Estigma</h5>
+                      </div>
+                      <p class="text-sm text-amber-700">"Vamos repetir: a banana, amarela, em formato de meia-lua" - sem pressão</p>
+                    </div>
+
+                    <div class="bg-white/70 p-4 rounded-lg">
+                      <div class="flex items-start mb-2">
+                        <i class="fas fa-hands-helping text-amber-600 mr-3 mt-1"></i>
+                        <h5 class="font-semibold text-amber-800">Assistência Discreta</h5>
+                      </div>
+                      <p class="text-sm text-amber-700">Cuidador circulando, apontando sutilmente a região da cartela, não assumindo a marcação</p>
+                    </div>
+
+                    <div class="bg-white/70 p-4 rounded-lg">
+                      <div class="flex items-start mb-2">
+                        <i class="fas fa-trophy text-amber-600 mr-3 mt-1"></i>
+                        <h5 class="font-semibold text-amber-800">Celebração Coletiva</h5>
+                      </div>
+                      <p class="text-sm text-amber-700">"Bingo da Maria! Vamos ver... maçã, banana, laranja, uva, pera - cinco frutas! Que cartela bonita!"</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="conversa" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Rodas de Conversa Temáticas</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h4 class="font-serif text-xl font-semibold text-gray-700 mb-4">Temas Estruturadores</h4>
+
+                <div class="space-y-4">
+                  <div class="bg-blue-50 p-4 rounded-lg">
+                    <div class="flex items-center mb-2">
+                      <i class="fas fa-child text-blue-600 mr-3"></i>
+                      <h5 class="font-semibold text-blue-900">"Minha infância"</h5>
+                    </div>
+                    <p class="text-sm text-blue-800">Brincadeiras, escola, irmãos, casa onde morava. Recursos: fotografias de brinquedos antigos, amostras de doces da época</p>
+                  </div>
+
+                  <div class="bg-green-50 p-4 rounded-lg">
+                    <div class="flex items-center mb-2">
+                      <i class="fas fa-briefcase text-green-600 mr-3"></i>
+                      <h5 class="font-semibold text-green-900">"Como era meu trabalho"</h5>
+                    </div>
+                    <p class="text-sm text-green-800">Profissão exercida, colegas, rotina, orgulho profissional. Recursos: ferramentas miniaturizadas, uniformes</p>
+                  </div>
+
+                  <div class="bg-purple-50 p-4 rounded-lg">
+                    <div class="flex items-center mb-2">
+                      <i class="fas fa-city text-purple-600 mr-3"></i>
+                      <h5 class="font-semibold text-purple-900">"A cidade onde nasci"</h5>
+                    </div>
+                    <p class="text-sm text-purple-800">Lugares de referência, festas locais, mudanças ao longo do tempo. Recursos: mapas antigos, postais</p>
+                  </div>
+
+                  <div class="bg-amber-50 p-4 rounded-lg">
+                    <div class="flex items-center mb-2">
+                      <i class="fas fa-users text-amber-600 mr-3"></i>
+                      <h5 class="font-semibold text-amber-900">"Minha família"</h5>
+                    </div>
+                    <p class="text-sm text-amber-800">Pais, irmãos, casamento, filhos, netos. Recursos: álbum de fotografias pessoais, árvore genealógica desenhada</p>
+                  </div>
+
+                  <div class="bg-pink-50 p-4 rounded-lg">
+                    <div class="flex items-center mb-2">
+                      <i class="fas fa-calendar-alt text-pink-600 mr-3"></i>
+                      <h5 class="font-semibold text-pink-900">"Como eram as festas"</h5>
+                    </div>
+                    <p class="text-sm text-pink-800">Casamentos, festas juninas, Natal, aniversários. Recursos: músicas de época, receitas manuscritas, decorações típicas</p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <img src="https://kimi-img.moonshot.cn/pub/icon/spinner.svg" alt="Elderly people participating in group conversation activity" class="w-full h-48 object-cover rounded-lg shadow-lg mb-6" size="medium" aspect="wide" style="photo" query="elderly group conversation" referrerpolicy="no-referrer" />
+
+                <div class="bg-indigo-50 p-6 rounded-lg">
+                  <h4 class="font-serif text-lg font-semibold text-indigo-900 mb-4">Recursos de Apoio</h4>
+
+                  <div class="space-y-3">
+                    <div class="flex items-start">
+                      <i class="fas fa-file-alt text-indigo-600 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-indigo-800">Folha A4 com Subtítulos Visuais</span>
+                        <p class="text-indigo-700 text-sm">Ícones simples representando cada subtema, que o cuidador aponta para estruturar a sequência</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-cube text-indigo-600 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-indigo-800">Objetos Tangíveis</span>
+                        <p class="text-indigo-700 text-sm">Pião, boneca de pano, ferramenta da profissão, crachá - relacionados ao tema em discussão</p>
+                      </div>
+                    </div>
+                    <div class="flex items-start">
+                      <i class="fas fa-music text-indigo-600 mr-3"></i>
+                      <div>
+                        <span class="font-medium text-indigo-800">Músicas e Cantigas</span>
+                        <p class="text-indigo-700 text-sm">Tocadas no início da roda e em transições entre subtemas, ativando memória emocional</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="rotina" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Atividades de Rotina Simulada</h3>
+
+            <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-8 rounded-xl">
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                  <h4 class="font-serif text-xl font-semibold text-emerald-900 mb-4">Tarefas Domésticas Adaptadas</h4>
+
+                  <div class="space-y-4">
+                    <div class="bg-white/70 p-4 rounded-lg">
+                      <div class="flex items-center mb-2">
+                        <i class="fas fa-tshirt text-emerald-600 mr-3"></i>
+                        <h5 class="font-semibold text-emerald-800">Dobradura de Panos</h5>
+                      </div>
+                      <p class="text-sm text-emerald-700">Panos de prato grandes, toalhas de rosto, com dobras simples (ao meio, ao meio novamente). Significado: contribuição para organização da casa</p>
+                    </div>
+
+                    <div class="bg-white/70 p-4 rounded-lg">
+                      <div class="flex items-center mb-2">
+                        <i class="fas fa-sort text-emerald-600 mr-3"></i>
+                        <h5 class="font-semibold text-emerald-800">Organização de Objetos</h5>
+                      </div>
+                      <p class="text-sm text-emerald-700">Botões, meias, prendedores de roupa em cestas separadas. Significado: preparação para atividade real de lavanderia</p>
+                    </div>
+
+                    <div class="bg-white/70 p-4 rounded-lg">
+                      <div class="flex items-center mb-2">
+                        <i class="fas fa-utensils text-emerald-600 mr-3"></i>
+                        <h5 class="font-semibold text-emerald-800">Separação de Ingredientes</h5>
+                      </div>
+                      <p class="text-sm text-emerald-700">Grãos de feijão/arroz em potes, temperos em tigelas, seguindo "receita" ilustrada. Significado: participação em preparação de refeição</p>
+                    </div>
+
+                    <div class="bg-white/70 p-4 rounded-lg">
+                      <div class="flex items-center mb-2">
+                        <i class="fas fa-coffee text-emerald-600 mr-3"></i>
+                        <h5 class="font-semibold text-emerald-800">Montagem de Bandeja</h5>
+                      </div>
+                      <p class="text-sm text-emerald-700">Xícaras, pires, colheres, açucareiro, dispostos em ordem. Significado: atendimento a visitas, hospitalidade</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 class="font-serif text-xl font-semibold text-emerald-900 mb-4">Sentido de Utilidade e Propósito</h4>
+
+                  <div class="bg-white/70 p-6 rounded-lg mb-6">
+                    <h5 class="font-semibold text-emerald-800 mb-3">Valorização do Processo</h5>
+                    <p class="text-emerald-700 text-sm mb-3">
+                      A dobradura "imperfeita", a organização "não ótima", a bandeja "incompleta" — são <strong>celebradas como contribuição genuína</strong>, não corrigidas para padrão externo.
+                    </p>
+                    <div class="bg-emerald-100 p-3 rounded text-xs text-emerald-800 italic">
+                      "Obrigada, Maria, você ajudou muito com os panos" - reforça identidade de pessoa útil, não apenas cuidada.
+                    </div>
+                  </div>
+
+                  <div class="bg-white/70 p-6 rounded-lg">
+                    <h5 class="font-semibold text-emerald-800 mb-3">Integração com Narrativa de Vida</h5>
+                    <p class="text-emerald-700 text-sm">
+                      "Na sua casa, você sempre arrumava a mesa para o almoço de domingo?" - conecta a atividade atual com <strong>narrativa de vida coerente</strong>, potencializando o significado pessoal.
+                    </p>
+                  </div>
+
+                  <div class="mt-6 p-4 bg-emerald-100 rounded-lg">
+                    <p class="text-emerald-800 text-sm italic">
+                      <i class="fas fa-lightbulb text-emerald-600 mr-2"></i>
+                      Pesquisa destaca que atividades com sentido de propósito demonstram <strong>maior engajamento e menor agitação</strong> em idosos com demência, comparadas a atividades puramente recreativas <a href="#ref-169" class="text-blue-600">[169]</a>.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 8: Implementation -->
+      <section id="implementacao" class="py-16 px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="font-serif text-3xl font-bold text-gray-900 mb-12 border-l-4 border-indigo-500 pl-6">
+            Organização e Implementação Prática
+          </h2>
+
+          <div id="ambiente" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Estruturação do Ambiente Físico</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h4 class="font-serif text-xl font-semibold text-gray-700 mb-4">Condições Físicas do Espaço</h4>
+
+                <div class="overflow-x-auto mb-6">
+                  <table class="w-full text-sm">
+                    <thead>
+                      <tr class="border-b-2 border-gray-200">
+                        <th class="text-left py-3 font-semibold text-gray-800">Aspecto</th>
+                        <th class="text-left py-3 font-semibold text-gray-800">Especificação</th>
+                        <th class="text-left py-3 font-semibold text-gray-800">Justificativa</th>
+                      </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                      <tr class="border-b border-gray-100">
+                        <td class="py-2">
+                          <div class="flex items-center">
+                            <i class="fas fa-sun text-yellow-500 mr-2"></i>
+                            <span class="font-medium">Iluminação</span>
+                          </div>
+                        </td>
+                        <td class="py-2">Natural preferencialmente; artificial 2700-3000K</td>
+                        <td class="py-2">Reduz fadiga visual, melhora humor</td>
+                      </tr>
+                      <tr class="border-b border-gray-100">
+                        <td class="py-2">
+                          <div class="flex items-center">
+                            <i class="fas fa-volume-mute text-blue-500 mr-2"></i>
+                            <span class="font-medium">Ruído</span>
+                          </div>
+                        </td>
+                        <td class="py-2">Redução ativa - TV desligada, conversas afastadas</td>
+                        <td class="py-2">Atenção sustentada vulnerável a interferência</td>
+                      </tr>
+                      <tr class="border-b border-gray-100">
+                        <td class="py-2">
+                          <div class="flex items-center">
+                            <i class="fas fa-thermometer-half text-red-500 mr-2"></i>
+                            <span class="font-medium">Temperatura</span>
+                          </div>
+                        </td>
+                        <td class="py-2">22-24°C, com ventilação</td>
+                        <td class="py-2">Desconforto aumenta agitação</td>
+                      </tr>
+                      <tr class="border-b border-gray-100">
+                        <td class="py-2">
+                          <div class="flex items-center">
+                            <i class="fas fa-chair text-gray-500 mr-2"></i>
+                            <span class="font-medium">Mobiliário</span>
+                          </div>
+                        </td>
+                        <td class="py-2">Mesa em U ou retangular com cadeiras do mesmo lado</td>
+                        <td class="py-2">Promove socialização e permite monitoramento</td>
+                      </tr>
+                      <tr>
+                        <td class="py-2">
+                          <div class="flex items-center">
+                            <i class="fas fa-wheelchair text-purple-500 mr-2"></i>
+                            <span class="font-medium">Acessibilidade</span>
+                          </div>
+                        </td>
+                        <td class="py-2">Espaço para circulação, mesas com altura ajustável</td>
+                        <td class="py-2">Inclusão de residentes com limitações motoras</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-serif text-xl font-semibold text-gray-700 mb-4">Disposição dos Materiais</h4>
+
+                <div class="space-y-6">
+                  <div class="bg-blue-50 p-6 rounded-lg">
+                    <div class="flex items-start mb-3">
+                      <i class="fas fa-tray text-blue-600 text-xl mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-semibold text-blue-900">Acessibilidade Imediata</h5>
+                        <p class="text-blue-800 text-sm">Materiais da atividade do dia em bandeja individual preparada antes do início, evitando espera e desorganização</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-green-50 p-6 rounded-lg">
+                    <div class="flex items-start mb-3">
+                      <i class="fas fa-boxes text-green-600 text-xl mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-semibold text-green-900">Organização por Tipo</h5>
+                        <p class="text-green-800 text-sm">Caixas identificadas: "Jogos de memória", "Quebra-cabeças", "Materiais de colagem" - com figura e palavra na etiqueta</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-purple-50 p-6 rounded-lg">
+                    <div class="flex items-start mb-3">
+                      <i class="fas fa-layer-group text-purple-600 text-xl mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-semibold text-purple-900">Quantidade Suficiente</h5>
+                        <p class="text-purple-800 text-sm">Múltiplos conjuntos de materiais idênticos ou similares, permitindo que todos trabalhem simultaneamente sem disputas</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-6 p-4 bg-indigo-100 rounded-lg">
+                  <p class="text-indigo-800 text-sm">
+                    <i class="fas fa-info-circle text-indigo-600 mr-2"></i>
+                    A qualidade do ambiente físico impacta diretamente o sucesso das atividades, influenciando desde a atenção e concentração até o humor e engajamento dos participantes <a href="#ref-183" class="text-blue-600">[183]</a>.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="planejamento" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Planejamento da Sessão</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h4 class="font-serif text-xl font-semibold text-gray-700 mb-4">Estrutura Temporal Recomendada</h4>
+
+                <div class="space-y-6">
+                  <div class="bg-blue-50 p-6 rounded-lg">
+                    <div class="flex items-center mb-3">
+                      <span class="bg-blue-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">1</span>
+                      <h5 class="font-semibold text-blue-900">Aquecimento (5 minutos)</h5>
+                    </div>
+                    <p class="text-blue-800 text-sm">Música de época, conversa informal, respiração conjunta. Objetivo: transição do estado anterior, criação de clima grupal</p>
+                  </div>
+
+                  <div class="bg-green-50 p-6 rounded-lg">
+                    <div class="flex items-center mb-3">
+                      <span class="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">2</span>
+                      <h5 class="font-semibold text-green-900">Atividade Principal (15-20 minutos)</h5>
+                    </div>
+                    <p class="text-green-800 text-sm">Foco cognitivo específico (memória, atenção, raciocínio). Objetivo: estimulação direta das funções-alvo</p>
+                  </div>
+
+                  <div class="bg-purple-50 p-6 rounded-lg">
+                    <div class="flex items-center mb-3">
+                      <span class="bg-purple-600 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold mr-3">3</span>
+                      <h5 class="font-semibold text-purple-900">Descontração (10 minutos)</h5>
+                    </div>
+                    <p class="text-purple-800 text-sm">Atividade lúdica de menor demanda (música, colagem livre, conversa). Objetivo: descarga de tensão, fechamento positivo</p>
+                  </div>
+                </div>
+
+                <div class="mt-6 p-4 bg-blue-100 rounded-lg">
+                  <p class="text-blue-800 text-sm">
+                    <i class="fas fa-clock text-blue-600 mr-2"></i>
+                    A duração total de 30-35 minutos respeita limites de atenção sustentada, podendo ser ajustada individualmente - alguns residentes beneficiam-se de sessões mais curtas (20 minutos), outros toleram extensão moderada (45 minutos) <a href="#ref-183" class="text-blue-600">[183]</a>.
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-serif text-xl font-semibold text-gray-700 mb-4">Variação Semanal de Estímulos</h4>
+
+                <div class="overflow-x-auto mb-6">
+                  <table class="w-full text-sm">
+                    <thead>
+                      <tr class="border-b-2 border-gray-200">
+                        <th class="text-left py-3 font-semibold text-gray-800">Dia</th>
+                        <th class="text-left py-3 font-semibold text-gray-800">Foco Principal</th>
+                        <th class="text-left py-3 font-semibold text-gray-800">Tipo de Atividade</th>
+                        <th class="text-left py-3 font-semibold text-gray-800">Exemplo</th>
+                      </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                      <tr class="border-b border-gray-100">
+                        <td class="py-2 font-medium">Segunda</td>
+                        <td class="py-2">Memória</td>
+                        <td class="py-2">Jogo da memória com fotos</td>
+                        <td class="py-2">Álbum pessoal de cada residente</td>
+                      </tr>
+                      <tr class="border-b border-gray-100">
+                        <td class="py-2 font-medium">Terça</td>
+                        <td class="py-2">Atenção</td>
+                        <td class="py-2">Caça-símbolos temático</td>
+                        <td class="py-2">"Frutas do mercado"</td>
+                      </tr>
+                      <tr class="border-b border-gray-100">
+                        <td class="py-2 font-medium">Quarta</td>
+                        <td class="py-2">Raciocínio</td>
+                        <td class="py-2">Dominó adaptado</td>
+                        <td class="py-2">Figuras de animais da fazenda</td>
+                      </tr>
+                      <tr class="border-b border-gray-100">
+                        <td class="py-2 font-medium">Quinta</td>
+                        <td class="py-2">Motricidade fina</td>
+                        <td class="py-2">Colagem ou dobradura</td>
+                        <td class="py-2">Cartão para aniversariante do mês</td>
+                      </tr>
+                      <tr>
+                        <td class="py-2 font-medium">Sexta</td>
+                        <td class="py-2">Socialização</td>
+                        <td class="py-2">Bingo ou roda de conversa</td>
+                        <td class="py-2">Músicas da juventude</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="bg-yellow-50 p-6 rounded-lg">
+                  <h5 class="font-semibold text-yellow-900 mb-3">Estratégia de Variação</h5>
+                  <div class="space-y-2 text-sm text-yellow-800">
+                    <p>• <strong>Repetição de atividades favoritas com variações:</strong> mesmo jogo da memória, temas diferentes; mesma estrutura de colagem, materiais novos</p>
+                    <p>• <strong>Introdução gradual de novidades:</strong> uma nova técnica por semana, não múltiplas simultâneas</p>
+                    <p>• <strong>Respeito ao ritmo de adaptação do grupo:</strong> manter engajamento sem monotonia</p>
+                    <p>• <strong>Feedback contínuo para ajuste do planejamento:</strong> observação sistemática informa as escolhas</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="avaliacao" class="mb-16">
+            <h3 class="font-serif text-2xl font-semibold text-gray-800 mb-8">Registro e Avaliação</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <div>
+                <h4 class="font-serif text-xl font-semibold text-gray-700 mb-4">Observação Sistemática</h4>
+
+                <div class="overflow-x-auto mb-6">
+                  <table class="w-full text-sm">
+                    <thead>
+                      <tr class="border-b-2 border-gray-200">
+                        <th class="text-left py-3 font-semibold text-gray-800">Dimensão</th>
+                        <th class="text-left py-3 font-semibold text-gray-800">O que Observar</th>
+                        <th class="text-left py-3 font-semibold text-gray-800">Registro Sugerido</th>
+                      </tr>
+                    </thead>
+                    <tbody class="text-gray-700">
+                      <tr class="border-b border-gray-100">
+                        <td class="py-2">
+                          <div class="flex items-center">
+                            <i class="fas fa-play text-blue-500 mr-2"></i>
+                            <span class="font-medium">Participação</span>
+                          </div>
+                        </td>
+                        <td class="py-2">Inicia atividade espontaneamente? Precisa de convite? Resiste?</td>
+                        <td class="py-2">Escala: 1 (resiste) a 5 (inicia espontaneamente)</td>
+                      </tr>
+                      <tr class="border-b border-gray-100">
+                        <td class="py-2">
+                          <div class="flex items-center">
+                            <i class="fas fa-brain text-green-500 mr-2"></i>
+                            <span class="font-medium">Engajamento</span>
+                          </div>
+                        </td>
+                        <td class="py-2">Mantém foco por toda a sessão? Distrai-se frequentemente?</td>
+                        <td class="py-2">Tempo estimado de foco sustentado; momentos de distração</td>
+                      </tr>
+                      <tr class="border-b border-gray-100">
+                        <td class="py-2">
+                          <div class="flex items-center">
+                            <i class="fas fa-hand-paper text-purple-500 mr-2"></i>
+                            <span class="font-medium">Independência</span>
+                          </div>
+                        </td>
+                        <td class="py-2">Executa sem assistência? Precisa de modelo? De assistência física?</td>
+                        <td class="py-2">Tipo e frequência de suporte necessário</td>
+                      </tr>
+                      <tr class="border-b border-gray-100">
+                        <td class="py-2">
+                          <div class="flex items-center">
+                            <i class="fas fa-comments text-orange-500 mr-2"></i>
+                            <span class="font-medium">Comunicação</span>
+                          </div>
+                        </td>
+                        <td class="py-2">Verbaliza durante atividade? Interage com pares?</td>
+                        <td class="py-2">Conteúdo e frequência de verbalizações</td>
+                      </tr>
+                      <tr>
+                        <td class="py-2">
+                          <div class="flex items-center">
+                            <i class="fas fa-heart text-red-500 mr-2"></i>
+                            <span class="font-medium">Emoção</span>
+                          </div>
+                        </td>
+                        <td class="py-2">Expressa prazer, frustração, ansiedade, tédio?</td>
+                        <td class="py-2">Marcadores emocionais específicos observados</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div>
+                <h4 class="font-serif text-xl font-semibold text-gray-700 mb-4">Ajustes Contínuos</h4>
+
+                <div class="space-y-6">
+                  <div class="bg-red-50 p-6 rounded-lg">
+                    <div class="flex items-start mb-3">
+                      <i class="fas fa-backward text-red-600 text-xl mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-semibold text-red-900">Simplificação Imediata</h5>
+                        <p class="text-red-800 text-sm">Redução de elementos, aumento de guia visual, assistência mais direta - sinais de frustração</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-green-50 p-6 rounded-lg">
+                    <div class="flex items-start mb-3">
+                      <i class="fas fa-forward text-green-600 text-xl mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-semibold text-green-900">Progressão Gradual</h5>
+                        <p class="text-green-800 text-sm">Aumento de complexidade em uma dimensão por vez (nunca simultaneamente) - domínio consistente</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-blue-50 p-6 rounded-lg">
+                    <div class="flex items-start mb-3">
+                      <i class="fas fa-adjust text-blue-600 text-xl mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-semibold text-blue-900">Adaptação de Materiais</h5>
+                        <p class="text-blue-800 text-sm">Aumento de contraste se queixa visual, aumento de tamanho se tremor progressivo, substituição de atividade se aversão desenvolvida</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="bg-purple-50 p-6 rounded-lg">
+                    <div class="flex items-start mb-3">
+                      <i class="fas fa-users text-purple-600 text-xl mr-3 mt-1"></i>
+                      <div>
+                        <h5 class="font-semibold text-purple-900">Comunicação com Equipe</h5>
+                        <p class="text-purple-800 text-sm">Enfermagem, fisioterapia, psicologia, médico - enriquece compreensão e coordena intervenções</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-6 p-4 bg-purple-100 rounded-lg">
+                  <h5 class="font-semibold text-purple-900 mb-3">Exemplo de Registro Útil</h5>
+                  <div class="space-y-1 text-xs text-purple-800">
+                    <p>• "Funciona bem com fotos de netos, resiste a atividades numéricas"</p>
+                    <p>• "Maior engajamento em atividades com música"</p>
+                    <p>• "Precisa de assistência física para corte, mas independência em colagem"</p>
+                    <p>• "Sinais de fadiga após 15 minutos - reduzir duração"</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- References Section -->
+      <section class="py-16 px-8 bg-white border-t border-gray-200">
+        <div class="max-w-6xl mx-auto">
+          <h2 class="font-serif text-2xl font-bold text-gray-900 mb-8">Referências Bibliográficas</h2>
+          <div class="text-sm text-gray-600 space-y-2">
+            <p id="ref-1">[1] <a href="https://drdanilomarcio.com.br/alzheimer-em-estagio-inicial-5-terapias-de-estimulacao-cognitiva-que-realmente-funcionam/" class="text-blue-600 hover:underline">Dr. Danilo Márcio - Alzheimer em Estágio Inicial: 5 Terapias de Estimulação Cognitiva</a>
+            </p>
+            <p id="ref-4">[4] <a href="https://metodosupera.com.br/como-idosos-aprendem-mesmo-com-baixa-escolaridade/" class="text-blue-600 hover:underline">Método Supera - Como Idosos Aprendem Mesmo com Baixa Escolaridade</a>
+            </p>
+            <p id="ref-13">[13] <a href="https://www.facene.com.br/wp-content/uploads/2020/06/Cartilha-dicas-Projeto-ES.pdf" class="text-blue-600 hover:underline">FACENE - Cartilha de Dicas Projeto ES</a>
+            </p>
+            <p id="ref-16">[16] <a href="https://luziane.com.br/atividades-para-idosos-para-pessoas-idosas-cadeirantes-com-deficit-visual-e-acamados/" class="text-blue-600 hover:underline">Luziane - Atividades para Idosos</a>
+            </p>
+            <p id="ref-31">[31] <a href="https://angelcareny.com/cognitive-exercises-for-seniors-improving-memory-and-focus/" class="text-blue-600 hover:underline">Angel Care NY - Cognitive Exercises for Seniors</a>
+            </p>
+            <p id="ref-59">[59] <a href="https://metodosupera.com.br/como-idosos-aprendem-mesmo-com-baixa-escolaridade/" class="text-blue-600 hover:underline">Método Supera - Aprendizado em Idosos</a>
+            </p>
+            <p id="ref-64">[64] <a href="https://alzheimerportugal.org/cadernos-de-atividades-e-estimulacao/" class="text-blue-600 hover:underline">Alzheimer Portugal - Cadernos de Atividades</a>
+            </p>
+            <p id="ref-89">[89] <a href="https://villasoleares.cl/ejercicios-cognitivos-para-personas-con-alzheimer-como-ayudan-a-ralentizar-el-deterioro/" class="text-blue-600 hover:underline">Villa Solares - Ejercicios Cognitivos para Alzheimer</a>
+            </p>
+            <p id="ref-91">[91] <a href="https://neuronup.com/actividades-de-neurorrehabilitacion/actividades-para-alzheimer/10-ejercicios-de-estimulacion-cognitiva-para-personas-con-alzheimer/" class="text-blue-600 hover:underline">NeuronUp - Ejercicios de Estimulación Cognitiva</a>
+            </p>
+            <p id="ref-92">[92] <a href="https://clinicarisso.com/7-ejercicios-de-estimulacion-cognitiva-para-adultos-mayores/" class="text-blue-600 hover:underline">Clínica Risso - Estimulación Cognitiva para Adultos</a>
+            </p>
+            <p id="ref-93">[93] <a href="https://www.demenciayalzheimer.es/ejercicios-cognitivos-descargar/" class="text-blue-600 hover:underline">Demencia y Alzheimer - Ejercicios Cognitivos</a>
+            </p>
+            <p id="ref-95">[95] <a href="https://cuidaris.com.mx/manualidades-para-adultos-mayores-con-cuidadores-estimulacion-conexion-y-bienestar/" class="text-blue-600 hover:underline">Cuidaris - Manualidades para Adultos Mayores</a>
+            </p>
+            <p id="ref-96">[96] <a href="https://www.institutogeriatrico.com/manualidades-para-personas-mayores-en-residencias" class="text-blue-600 hover:underline">Instituto Geriátrico - Manualidades en Residencias</a>
+            </p>
+            <p id="ref-97">[97] <a href="https://villasoleares.cl/5-manualidades-sencillas-para-estimular-la-memoria-de-personas-con-alzheimer/" class="text-blue-600 hover:underline">Villa Solares - Manualidades para Estimular Memoria</a>
+            </p>
+            <p id="ref-112">[112] <a href="https://www.hoptoys.es/adultos-con-trastornos-cognitivos-juegos-adaptados-c-4721.html" class="text-blue-600 hover:underline">HopToys - Juegos Adaptados para Trastornos Cognitivos</a>
+            </p>
+            <p id="ref-114">[114] <a href="https://geriayuda.com/juegos-para-personas-con-discapacidad-fisica-e-intelectual/?srsltid=AfmBOooxZ86g2PkG0ONImfetd3qcsqmHGUpdkLQmNy_PZnecycNW2MIr" class="text-blue-600 hover:underline">GeriAyuda - Juegos para Discapacidad</a>
+            </p>
+            <p id="ref-117">[117] <a href="https://www.sanitas.es/biblioteca-de-salud/tercera-edad/demencias/juegos-para-personas-con-alzheimer" class="text-blue-600 hover:underline">Sanitas - Juegos para Personas con Alzheimer</a>
+            </p>
+            <p id="ref-118">[118] <a href="https://relish-life.com/es-es/blogs/articles/sensory-activities-dementia?srsltid=AfmBOooXlKSMuPZ5MM5WtAsIJcYcb0zdpT_p7fKKJ3LMkgsCU1DuF5cB" class="text-blue-600 hover:underline">Relish Life - Sensory Activities for Dementia</a>
+            </p>
+            <p id="ref-121">[121] <a href="https://www.incmnsz.mx/2017/Geriatria/Pautas-estimulacion-cognitiva3.pdf" class="text-blue-600 hover:underline">INCMNSZ - Pautas de Estimulación Cognitiva</a>
+            </p>
+            <p id="ref-123">[123] <a href="https://www.demenciayalzheimer.es/ejercicios-cognitivos-descargar/" class="text-blue-600 hover:underline">Demencia y Alzheimer - Ejercicios Cognitivos</a>
+            </p>
+            <p id="ref-126">[126] <a href="https://clinicanodos.es/la-estimulacion-sensorial-como-recurso-terapeutico-una-aproximacion-desde-la-terapia-ocupacional/" class="text-blue-600 hover:underline">Clínica Nodos - Estimulación Sensorial</a>
+            </p>
+            <p id="ref-128">[128] <a href="https://lemur.baby/salud/estimulacion-cognitiva-que-es-y-que-ejercicios-realizar/?srsltid=AfmBOopLr8LWoQ7OUts1o0XUxeP1wtz0Yzv62xgKM_O2mFNy5_JwOODE" class="text-blue-600 hover:underline">Lemur Baby - Estimulación Cognitiva</a>
+            </p>
+            <p id="ref-133">[133] <a href="https://caring.pt/atividades-para-idosos-guia-completo/" class="text-blue-600 hover:underline">Caring - Atividades para Idosos</a>
+            </p>
+            <p id="ref-136">[136] <a href="https://drdanilomarcio.com.br/alzheimer-em-estagio-inicial-5-terapias-de-estimulacao-cognitiva-que-realmente-funcionam/" class="text-blue-600 hover:underline">Dr. Danilo Márcio - Terapias de Estimulação Cognitiva</a>
+            </p>
+            <p id="ref-142">[142] <a href="https://tix.life/inclusao-escolar/estimulacao-cognitiva/" class="text-blue-600 hover:underline">Tix Life - Estimulação Cognitiva</a>
+            </p>
+            <p id="ref-143">[143] <a href="https://acvida.com.br/estimulacao-cognitiva/10-desenhos-para-idosos/" class="text-blue-600 hover:underline">AC Vida - Desenhos para Idosos</a>
+            </p>
+            <p id="ref-155">[155] <a href="https://caring.pt/atividades-para-idosos-guia-completo/" class="text-blue-600 hover:underline">Caring - Atividades para Idosos (Completo)</a>
+            </p>
+            <p id="ref-156">[156] <a href="https://culsen.com/artigo/atividades-estimulacao-cognitiva-alzheimer" class="text-blue-600 hover:underline">Culsen - Atividades de Estimulação Cognitiva</a>
+            </p>
+            <p id="ref-158">[158] <a href="https://caring.pt/jogos-para-idosos-sugestoes-beneficios-perigos-precos/" class="text-blue-600 hover:underline">Caring - Jogos para Idosos</a>
+            </p>
+            <p id="ref-161">[161] <a href="https://www.portaldoenvelhecimento.com.br/wp-content/uploads/2023/06/Ebook-Caderno-de-exercicios-estimulacao-cognitiva.pdf" class="text-blue-600 hover:underline">Portal do Envelhecimento - Caderno de Exercícios</a>
+            </p>
+            <p id="ref-168">[168] <a href="https://www.geriatriarama.com.br/terapia-ocupacional/atividades-para-a-rotina-de-estimulacao-da-pessoa-com-alzheimer" class="text-blue-600 hover:underline">Geriátrica Arama - Atividades para Rotina</a>
+            </p>
+            <p id="ref-169">[169] <a href="https://www.tena.com.br/blog/post/dicas-para-estimular-a-pessoa-com-alzheimer?srsltid=AfmBOorRjKD9miwHGvTTMaZmv7UT1dTb5fFiAQj0UG2Sbs9OU0yuUbaR" class="text-blue-600 hover:underline">TENA - Dicas para Estimular Pessoa com Alzheimer</a>
+            </p>
+            <p id="ref-171">[171] <a href="https://luziane.com.br/atividades-para-idosos-para-pessoas-idosas-cadeirantes-com-deficit-visual-e-acamados/" class="text-blue-600 hover:underline">Luziane - Atividades para Idosos com Necessidades Especiais</a>
+            </p>
+            <p id="ref-180">[180] <a href="https://corapremium.com.br/estimule-a-memoria-e-cognicao-em-pacientes-com-alzheimer-com-essas-atividades/" class="text-blue-600 hover:underline">Cora Premium - Estimule Memória e Cognição</a>
+            </p>
+            <p id="ref-183">[183] <a href="https://caring.pt/estimulacao-cognitiva-atividades-beneficios-dicas/" class="text-blue-600 hover:underline">Caring - Estimulação Cognitiva: Atividades, Benefícios e Dicas</a>
+            </p>
+            <p id="ref-184">[184] <a href="https://acvida.com.br/estimulacao-cognitiva/10-desenhos-para-idosos/" class="text-blue-600 hover:underline">AC Vida - 10 Desenhos para Idosos</a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="bg-gray-900 text-white py-8 px-8">
+        <div class="max-w-6xl mx-auto text-center">
+          <p class="text-gray-400">
+            Este guia foi desenvolvido com base em evidências científicas e melhores práticas para atividades de estimulação cognitiva em idosos institucionalizados.
+          </p>
+          <p class="text-gray-500 text-sm mt-4">
+            Última atualização: Janeiro 2025
+          </p>
+        </div>
+      </footer>
+
+    </main>
+
+    <script>
+// Toggle TOC on mobile
+document.getElementById('toc-toggle').addEventListener('click', function() {
+    document.getElementById('toc-nav').classList.remove('-translate-x-full');
+});
+
+document.getElementById('toc-close').addEventListener('click', function() {
+    document.getElementById('toc-nav').classList.add('-translate-x-full');
+});
+
+// Close TOC when clicking on a link (mobile)
+document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', function() {
+        if (window.innerWidth < 1024) {
+            document.getElementById('toc-nav').classList.add('-translate-x-full');
+        }
+    });
+});
+
+// Initialize Mermaid with enhanced configuration
+mermaid.initialize({ 
+    startOnLoad: true,
+    theme: 'base',
+    themeVariables: {
+        primaryColor: '#ffffff',
+        primaryTextColor: '#1f2937',
+        primaryBorderColor: '#374151',
+        lineColor: '#6b7280',
+        secondaryColor: '#f9fafb',
+        tertiaryColor: '#f3f4f6',
+        background: '#ffffff',
+        mainBkg: '#ffffff',
+        secondBkg: '#f9fafb',
+        tertiaryBkg: '#f3f4f6',
+        edgeLabelBackground: '#ffffff',
+        nodeTextColor: '#1f2937',
+        textColor: '#1f2937',
+        fontFamily: 'Inter, sans-serif',
+        fontSize: '14px'
+    },
+    flowchart: {
+        htmlLabels: true,
+        curve: 'basis',
+        padding: 20,
+        nodeSpacing: 50,
+        rankSpacing: 50,
+        diagramPadding: 20
+    },
+    fontFamily: 'Inter, sans-serif',
+    fontSize: '14px'
+});
+
+// Initialize Mermaid Controls for zoom and pan
+function initializeMermaidControls() {
+    const containers = document.querySelectorAll('.mermaid-container');
+
+    containers.forEach(container => {
+    const mermaidElement = container.querySelector('.mermaid');
+    let scale = 1;
+    let isDragging = false;
+    let startX, startY, translateX = 0, translateY = 0;
+
+    // 触摸相关状态
+    let isTouch = false;
+    let touchStartTime = 0;
+    let initialDistance = 0;
+    let initialScale = 1;
+    let isPinching = false;
+
+    // Zoom controls
+    const zoomInBtn = container.querySelector('.zoom-in');
+    const zoomOutBtn = container.querySelector('.zoom-out');
+    const resetBtn = container.querySelector('.reset-zoom');
+    const fullscreenBtn = container.querySelector('.fullscreen');
+
+    function updateTransform() {
+        mermaidElement.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+
+        if (scale > 1) {
+        container.classList.add('zoomed');
+        } else {
+        container.classList.remove('zoomed');
+        }
+
+        mermaidElement.style.cursor = isDragging ? 'grabbing' : 'grab';
+    }
+
+    if (zoomInBtn) {
+        zoomInBtn.addEventListener('click', () => {
+        scale = Math.min(scale * 1.25, 4);
+        updateTransform();
+        });
+    }
+
+    if (zoomOutBtn) {
+        zoomOutBtn.addEventListener('click', () => {
+        scale = Math.max(scale / 1.25, 0.3);
+        if (scale <= 1) {
+            translateX = 0;
+            translateY = 0;
+        }
+        updateTransform();
+        });
+    }
+
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+        scale = 1;
+        translateX = 0;
+        translateY = 0;
+        updateTransform();
+        });
+    }
+
+    if (fullscreenBtn) {
+        fullscreenBtn.addEventListener('click', () => {
+        if (container.requestFullscreen) {
+            container.requestFullscreen();
+        } else if (container.webkitRequestFullscreen) {
+            container.webkitRequestFullscreen();
+        } else if (container.msRequestFullscreen) {
+            container.msRequestFullscreen();
+        }
+        });
+    }
+
+    // Mouse Events
+    mermaidElement.addEventListener('mousedown', (e) => {
+        if (isTouch) return; // 如果是触摸设备，忽略鼠标事件
+
+        isDragging = true;
+        startX = e.clientX - translateX;
+        startY = e.clientY - translateY;
+        mermaidElement.style.cursor = 'grabbing';
+        updateTransform();
+        e.preventDefault();
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (isDragging && !isTouch) {
+        translateX = e.clientX - startX;
+        translateY = e.clientY - startY;
+        updateTransform();
+        }
+    });
+
+    document.addEventListener('mouseup', () => {
+        if (isDragging && !isTouch) {
+        isDragging = false;
+        mermaidElement.style.cursor = 'grab';
+        updateTransform();
+        }
+    });
+
+    document.addEventListener('mouseleave', () => {
+        if (isDragging && !isTouch) {
+        isDragging = false;
+        mermaidElement.style.cursor = 'grab';
+        updateTransform();
+        }
+    });
+
+    // 获取两点之间的距离
+    function getTouchDistance(touch1, touch2) {
+        return Math.hypot(
+        touch2.clientX - touch1.clientX,
+        touch2.clientY - touch1.clientY
+        );
+    }
+
+    // Touch Events - 触摸事件处理
+    mermaidElement.addEventListener('touchstart', (e) => {
+        isTouch = true;
+        touchStartTime = Date.now();
+
+        if (e.touches.length === 1) {
+        // 单指拖动
+        isPinching = false;
+        isDragging = true;
+
+        const touch = e.touches[0];
+        startX = touch.clientX - translateX;
+        startY = touch.clientY - translateY;
+
+        } else if (e.touches.length === 2) {
+        // 双指缩放
+        isPinching = true;
+        isDragging = false;
+
+        const touch1 = e.touches[0];
+        const touch2 = e.touches[1];
+        initialDistance = getTouchDistance(touch1, touch2);
+        initialScale = scale;
+        }
+
+        e.preventDefault();
+    }, { passive: false });
+
+    mermaidElement.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 1 && isDragging && !isPinching) {
+        // 单指拖动
+        const touch = e.touches[0];
+        translateX = touch.clientX - startX;
+        translateY = touch.clientY - startY;
+        updateTransform();
+
+        } else if (e.touches.length === 2 && isPinching) {
+        // 双指缩放
+        const touch1 = e.touches[0];
+        const touch2 = e.touches[1];
+        const currentDistance = getTouchDistance(touch1, touch2);
+
+        if (initialDistance > 0) {
+            const newScale = Math.min(Math.max(
+            initialScale * (currentDistance / initialDistance),
+            0.3
+            ), 4);
+            scale = newScale;
+            updateTransform();
+        }
+        }
+
+        e.preventDefault();
+    }, { passive: false });
+
+    mermaidElement.addEventListener('touchend', (e) => {
+        // 重置状态
+        if (e.touches.length === 0) {
+        isDragging = false;
+        isPinching = false;
+        initialDistance = 0;
+
+        // 延迟重置isTouch，避免鼠标事件立即触发
+        setTimeout(() => {
+            isTouch = false;
+        }, 100);
+        } else if (e.touches.length === 1 && isPinching) {
+        // 从双指变为单指，切换为拖动模式
+        isPinching = false;
+        isDragging = true;
+
+        const touch = e.touches[0];
+        startX = touch.clientX - translateX;
+        startY = touch.clientY - translateY;
+        }
+
+        updateTransform();
+    });
+
+    mermaidElement.addEventListener('touchcancel', (e) => {
+        isDragging = false;
+        isPinching = false;
+        initialDistance = 0;
+
+        setTimeout(() => {
+        isTouch = false;
+        }, 100);
+
+        updateTransform();
+    });
+
+    // Enhanced wheel zoom with better center point handling
+    container.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        const rect = container.getBoundingClientRect();
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const delta = e.deltaY > 0 ? 0.9 : 1.1;
+        const newScale = Math.min(Math.max(scale * delta, 0.3), 4);
+
+        // Adjust translation to zoom towards center
+        if (newScale !== scale) {
+        const scaleDiff = newScale / scale;
+        translateX = translateX * scaleDiff;
+        translateY = translateY * scaleDiff;
+        scale = newScale;
+
+        if (scale <= 1) {
+            translateX = 0;
+            translateY = 0;
+        }
+
+        updateTransform();
+        }
+    });
+
+    // Initialize display
+    updateTransform();
+    });
+}
+
+// Initialize the mermaid controls when the DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initializeMermaidControls();
+});
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+    });
+});
+
+// Highlight active section in TOC
+window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav a[href^="#"]');
+    
+    let current = '';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= sectionTop - 200) {
+            current = section.getAttribute('id');
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove('font-bold', 'text-blue-800');
+        if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('font-bold', 'text-blue-800');
+        }
+    });
+});
+</script>
+
+  </body>
+
+</html>
